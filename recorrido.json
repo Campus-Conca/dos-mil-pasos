@@ -1,0 +1,708 @@
+{
+  "titulo": "Dos mil pasos",
+  "subtitulo": "La historia del español, un paso por año. Camina y escucha.",
+  "etiqueta": "Sendero sonoro",
+  "creditos": "Etimologías grecolatinas · UAQ Campus Concá · Guion y voces del grupo, 2026",
+  "largoTotalMetros": 1570,
+  "longitudPasoMetros": 0.7,
+  "motorDefault": "pasos",
+  "cronologia": {
+    "activa": true,
+    "anioInicio": -218,
+    "aniosPorPaso": 1,
+    "tic": 100,
+    "etiqueta": "Año",
+    "ticAudio": "audios/campana.mp3",
+    "ticVolumen": 0.5,
+    "eras": [
+      {
+        "desde": -218,
+        "nombre": "Roma",
+        "acento": "#8C2F39"
+      },
+      {
+        "desde": 409,
+        "nombre": "Godos",
+        "acento": "#5C4A2E"
+      },
+      {
+        "desde": 711,
+        "nombre": "Al-Ándalus",
+        "acento": "#1F6F6B"
+      },
+      {
+        "desde": 1070,
+        "nombre": "Castilla",
+        "acento": "#7A4A1E"
+      },
+      {
+        "desde": 1492,
+        "nombre": "El mar",
+        "acento": "#2F5D8A"
+      },
+      {
+        "desde": 1519,
+        "nombre": "Nueva España",
+        "acento": "#3E7A3A"
+      },
+      {
+        "desde": 1713,
+        "nombre": "La Academia",
+        "acento": "#6B2E6E"
+      },
+      {
+        "desde": 1821,
+        "nombre": "México",
+        "acento": "#B0462E"
+      },
+      {
+        "desde": 1930,
+        "nombre": "La radio",
+        "acento": "#8A6A1E"
+      },
+      {
+        "desde": 2003,
+        "nombre": "Tu pantalla",
+        "acento": "#8C2F39"
+      }
+    ]
+  },
+  "portada": {
+    "imagen": "imagenes/portada.svg",
+    "meta": "16 paradas · 1.5 km · dos horas de clase"
+  },
+  "paleta": {
+    "fondo": "#F4EBD9",
+    "panel": "#E9DCC2",
+    "acento": "#8C2F39",
+    "texto": "#2B1D14"
+  },
+  "tipografia": {
+    "display": "Cormorant Garamond",
+    "cuerpo": "Inter"
+  },
+  "voces": {
+    "lengua": {
+      "rate": 0.95,
+      "pitch": 1.05
+    },
+    "testigo": {
+      "rate": 0.95,
+      "pitch": 0.9
+    }
+  },
+  "ambientes": {
+    "mar": "audios/ambiente-mar.mp3",
+    "foro": "audios/ambiente-foro.mp3",
+    "scriptorium": "audios/ambiente-escritorio.mp3",
+    "viento": "audios/ambiente-godos.mp3",
+    "zoco": "audios/ambiente-zoco.mp3",
+    "monasterio": "audios/ambiente-monasterio.mp3",
+    "plaza": "audios/ambiente-plaza.mp3",
+    "puerto": "audios/ambiente-imprenta-puerto.mp3",
+    "mercado": "audios/ambiente-tlatelolco.mp3",
+    "corral": "audios/ambiente-corral.mp3",
+    "sala": "audios/ambiente-gabinete.mp3",
+    "radio": "audios/ambiente-radio.mp3",
+    "escuela": "audios/ambiente-pueblo-quieto.mp3",
+    "cocina": "audios/ambiente-tianguis.mp3",
+    "teclado": "audios/ambiente-pantalla.mp3",
+    "silencio": "audios/ambiente-pueblo.mp3"
+  },
+  "fondo": {
+    "activo": true,
+    "fuente": "drone",
+    "tono": "grave",
+    "volumen": 0.045,
+    "duck": 0.3
+  },
+  "ui": {
+    "siguienteSegundos": 10
+  },
+  "instrucciones": [
+    "Cada paso que das es un año. Diez pasos, una década; cien pasos, un siglo. Arriba verás el año en que vas.",
+    "Guarda el teléfono en la bolsa y camina despacio. Las historias llegan solas cuando cruzas cada época.",
+    "Al final hay un examen de nueve preguntas. Cada acierto deja una ficha en tu morral: enséñaselo a tu profe.",
+    "Son dos mil doscientos pasos, cerca de kilómetro y medio. Lleva agua."
+  ],
+  "inicio": "t01",
+  "tramos": [
+    {
+      "id": "t01",
+      "etiqueta": "218 a. C.",
+      "titulo": "Un soldado con hambre",
+      "texto": "Guarda el teléfono en la bolsa. Yo te aviso cuando haya algo que ver; mientras tanto, mira el camino, que para eso saliste.\n\nSoy tu propia lengua. Me dicen español, aunque me pasé más de la mitad de mi vida sin nombre. Cada paso que des será un año de mi vida. Empezamos en el año 218 antes de Cristo y terminaremos en el 2026. Cada cien años sonará una campana. Eso es todo. De aquí en adelante, la historia de tu propio idioma.\n\nLa historia empieza con un muchacho que no sabe leer y que tiene hambre. Es el año 218 antes de Cristo. Un barco romano toca una playa del norte de Hispania y baja un soldado. Digamos que se llama Lucio. Lucio tiene veintitantos años, trae las sandalias mojadas, y habla latín. Pero no el latín de los libros de texto. Habla el latín del cuartel: rápido, descuidado, lleno de palabras que los maestros de Roma habrían tachado con tinta roja. En esa playa nadie le entiende ni madres, porque aquí se hablaba íbero, celta y vasco.\n\nLucio: «Ego Lucius. Pane! Pane, mehercle!»\n\nEse muchacho con hambre es mi papá. Él no es un poeta ni un senador, sino un soldado que vino a pelear contra Aníbal y se quedó porque alguien le dio pan. Yo salí de esa boca y de otras diez mil como esa. Todo lo elegante que tengo me lo puse después, pero de nacimiento soy solo el latín de los soldados pobres.\n\nAntes de dar un paso más, grita la palabra «pan». [pausa] Acabas de decir la primera palabra que Lucio necesitó en esta tierra, casi igual que él: panis, pan. Dos mil doscientos años y sigue sirviendo para lo mismo. Camina.",
+      "voz": "lengua",
+      "audio": "audios/t01.mp3",
+      "ambiente": "mar",
+      "metros": 0.0,
+      "imagen": "imagenes/t01.jpg",
+      "imagenPie": "Legionarios en marcha, Columna de Trajano. Foto: Rabax63, CC BY-SA 4.0, Wikimedia Commons"
+    },
+    {
+      "id": "t02",
+      "etiqueta": "171 a. C.",
+      "titulo": "Los hijos de nadie",
+      "texto": "Imagina que no eres de ninguna parte. Que no te pueden inscribir en la escuela porque no existes en ningún papel. Eso les pasó a miles de jóvenes cuarenta y siete años después de que Lucio bajara del barco, y de ese problema salí yo.\n\nEs el año 171 antes de Cristo. Llega al Senado de Roma una delegación de Hispania con un asunto raro. Representan a más de cuatro mil jóvenes que son hijos de soldados romanos y de mujeres de aquí, y esos jóvenes no son nada: ni romanos, porque su mamá no lo era, ni hispanos, porque su papá tampoco. Para resolver la situación, Roma les regala una ciudad para que se junten todos a vivir ahí: Carteia, junto a Gibraltar.\n\nEsos cuatro mil aprendieron de su mamá las palabras de la casa y del campo, y de su papá las del cuartel. Hablaban latín, pero un latín que se les deformaba en la boca con el acento de una lengua que ya se estaba muriendo. Así nací yo: en una cocina revuelta, no en una academia. Si alguien te dice que soy la lengua de Cervantes, dile que antes fui la lengua de los hijos de inmigrantes sin papeles.\n\nEn mi vida, cuando dos palabras latinas querían decir lo mismo, una fina y una corriente, siempre ganó la corriente. Equus era de poetas; los soldados decían caballus, el caballo flaco de carga. Para casa no decían domus, la casa señorial; decían casa, que quería decir choza. Y para boca decían bucca, el cachete. Tú dices caballo, casa y boca todos los días sin saber que hablas como un soldado que se burla de los ricos. Quédate con caballo: es la primera palabra que te dejaré guardada.\n\nDoscientos años después, toda Hispania hablaba latín. Me gustaría contarte que fue por amor a la cultura romana. No. Nadie prohibió el íbero; no hizo falta. Las leyes se escribían en latín, los contratos se firmaban en latín, en el mercado se regateaba en latín y los ascensos se pedían en latín. Si querías ascender en la escala social, aprendías la lengua del que mandaba, y tus hijos ya no aprendían la tuya. El íbero se apagó sin que nadie lo matara, que es la manera más eficiente que existe de matar una lengua. Sobrevivió una sola de las de antes, el vasco, en unas montañas que a Roma no le interesaron.",
+      "voz": "lengua",
+      "audio": "audios/t02.mp3",
+      "ambiente": "foro",
+      "metros": 32.9,
+      "objeto": {
+        "nombre": "caballo",
+        "texto": "Entró en mí hacia el año 171 a. C."
+      },
+      "imagen": "imagenes/t02.jpg",
+      "imagenPie": "Ruinas del foro de Carteia, San Roque. Foto: Falconaumanni, CC BY-SA 3.0, Wikimedia Commons"
+    },
+    {
+      "id": "t03",
+      "etiqueta": "año 350",
+      "titulo": "El regañón perdedor",
+      "texto": "¿Te han dicho alguna vez «así no se dice»? Esto que te voy a contar es la primera vez que alguien lo escribió, y quiero que veas cómo le fue.\n\nLlevas casi seiscientos años de latín, y en seis siglos el latín se ha ido descomponiendo despacio en la boca de la gente, como todo lo que se usa a diario. Nadie se daba cuenta, porque uno siempre cree que habla como hablaba su abuela. Pero hubo un señor que sí se dio cuenta, y se enojó. Es el año 350, más o menos. En Roma, un maestro de gramática del que no sabemos el nombre se sienta a escribir una lista de doscientos veintisiete regaños, en dos columnas: cómo se dice, cómo no se dice.\n\nAhora tócate la oreja. Esa cosa se llamaba auris para el maestro, oricla para la gente, y tú le dices oreja, que viene de oricla. Tócate un ojo: oculus para el maestro, oclus para la gente, ojo para ti. La mesa donde comes, igual. Las palabras que el maestro prohibió son las que tú usas. El primer corrector de estilo de la historia perdió sus doscientas veintisiete batallas, una por una, contra gente que nunca supo que lo estaba desobedeciendo.",
+      "voz": "lengua",
+      "audio": "audios/t03.mp3",
+      "ambiente": "scriptorium",
+      "metros": 364.0,
+      "objeto": {
+        "nombre": "oreja",
+        "texto": "Entró en mí hacia el año 350"
+      },
+      "imagen": "imagenes/t03.jpg",
+      "imagenPie": "Manuscrito latino del siglo IV (Vergilius Vaticanus, Biblioteca Vaticana). Dominio público"
+    },
+    {
+      "id": "t04",
+      "etiqueta": "año 409",
+      "titulo": "Los que trajeron la guerra",
+      "texto": "Piensa en el apellido de tu mamá, o en el de tu papá. Si termina en ez, Hernández, Martínez, González, Rodríguez, lo que viene ahora es tu historia familiar, aunque nunca hayas salido de Querétaro.\n\nEs el año 409 y el imperio romano se cae a pedazos. Por los Pirineos, que ya nadie vigila, entran suevos, vándalos y godos que reinaron en Hispania por 300 años. Los romanos les decían bárbaros a todos los que no hablaban latín, por el ruido que hacían al hablar: bar-bar. Un insulto por onomatopeya, como decirle a alguien «el bla-bla».\n\nCon tres siglos de godos mandando podrías pensar que me volví una lengua medio germana. En realidad no. Esos conquistadores eran pocos frente a millones de hispanorromanos y acabaron hablando mi latín en dos generaciones. Pero una gente que vive de la guerra deja las palabras de la guerra: guerra, guardar, robar, espía, yelmo, tregua, bandido. Y ropa, que al principio quería decir botín, lo que te quitaban después de robarte; por eso ropa y robar son parientes. Lo de guerra tiene su chiste: en latín ya existía bellum, pero bellum se parecía demasiado a bellus, bonito, y a nadie le gusta decir que va a una guerra bonita. Tomé la palabra germánica por pudor.\n\nOtra cosa que me dejaron como herencia fueron los nombres, y ahí entra tu apellido. Rodrigo es Hrodric: gloria y poder. Fernando, paz y audacia. Alfonso, Gonzalo, Álvaro, Ramiro. De esos nombres salieron los apellidos con ez al final, que quiere decir hijo de: Rodríguez, hijo de Rodrigo; Fernández, hijo de Fernando; González, hijo de Gonzalo. Si tu familia es Hernández desde que hay memoria, en algún punto hubo un Hernando, y antes de ese Hernando hubo algún godo que seguramente apestaba a caballo.\n\nGuerra es la palabra de esta parada. Y prepárate, porque lo que viene sí me transformó porque duró ochocientos años.",
+      "voz": "lengua",
+      "audio": "audios/t04.mp3",
+      "ambiente": "viento",
+      "metros": 41.3,
+      "objeto": {
+        "nombre": "guerra",
+        "texto": "Entró en mí hacia el año 409"
+      },
+      "imagen": "imagenes/t04.jpg",
+      "imagenPie": "Corona votiva del rey godo Recesvinto, siglo VII. Foto: Emilio J. Rodríguez Posada, CC BY-SA 2.0, Wikimedia Commons"
+    },
+    {
+      "id": "t05",
+      "etiqueta": "año 711",
+      "titulo": "Ocho siglos con el vecino",
+      "texto": "Vas a necesitar las dos manos. Mientras caminas, cuenta con los dedos cada cosa de tu casa que yo te diga que es árabe. Cuando se te acaben los dedos, deja de contar y sigue oyendo.\n\nEs el año 711. Un ejército cruza el Mediterráneo desde África, derrota al último rey godo, y en pocos años casi toda la península habla, en la calle y en el palacio, otra lengua: el árabe. Los musulmanes se quedaron en España ocho siglos. Para que te hagas una idea: desde que empezaste a caminar hasta aquí han pasado novecientos años; ellos estuvieron casi lo mismo.\n\nTodo ese tiempo yo fui la lengua de los de abajo, de los campesinos del norte, en pueblos chicos. El árabe era la lengua de la ciencia, del comercio y de la ciudad. Córdoba, en el siglo diez, era la ciudad más grande de Europa occidental, con faroles en las calles de noche.\n\nCuando una lengua manda durante ocho siglos, deja huella aunque no quiera. De ahí me quedaron unas cuatro mil palabras. Ahora los dedos. Alberca. Almohada. Albañil. Alcancía. Tarea. Taza. Jarra. Azotea. Ya se te acabó una mano. Naranja, limón, sandía, zanahoria, aceite, azúcar, alfalfa, arroz. Y la otra. Y faltan álgebra, algoritmo, cifra y cero, las cuales vienen del árabe sifr, vacío. Y hay una que dices cuando quieres algo con muchas ganas: ojalá. Es «law sha Allah», si Dios quisiera. Cada vez que dices ojalá rezas en árabe.\n\nUna más, que no es de esa época pero es de la misma gente: el taco al pastor. Lo trajeron inmigrantes libaneses a Puebla hacia 1930, con el nombre de shawarma, carne girando en un trompo; aquí le cambiaron el cordero por cerdo, le pusieron piña, y salió el taco más mexicano que existe, que de origen es árabe.\n\nY un detalle que me enternece: las muchachas de Al-Ándalus que hablaban mi lengua romance cantaban canciones de amor de cuatro líneas, y los poetas árabes, que las oían en la calle, las metían al final de sus poemas escritas con letras árabes. Se llaman jarchas, y son la primera poesía que existe en español. Esos versos no los escribió un monje ni un rey, sino que los cantaron muchachas enamoradas, como quien mete un verso de reguetón en su trabajo de etimologías.\n\nLa palabra que te dejo es ojalá. Dila en voz alta, y piensa a quién le estás pidiendo el favor en realidad.",
+      "voz": "lengua",
+      "audio": "audios/t05.mp3",
+      "ambiente": "zoco",
+      "metros": 211.4,
+      "objeto": {
+        "nombre": "ojalá",
+        "texto": "Entró en mí hacia el año 711"
+      },
+      "imagen": "imagenes/t05.jpg",
+      "imagenPie": "Arcos de la Mezquita de Córdoba. Foto: Alvaro.vinuela.carnicero, CC BY-SA 4.0, Wikimedia Commons"
+    },
+    {
+      "id": "t06",
+      "etiqueta": "año 1070",
+      "titulo": "El monje que hace trampa",
+      "texto": "¿Alguna vez has hecho un acordeón? Un papelito con respuestas, chiquito, escondido. Pues mi acta de nacimiento es un acordeón.\n\nEs el año 1070, más o menos. Estamos en un monasterio de La Rioja, en donde un monje del que tampoco sabemos el nombre está leyendo un libro de sermones en latín que no entiende bien. No porque sea tonto: es que el latín de los libros ya no era su idioma. Él hablaba lo que se hablaba en su pueblo, latín gastado por nueve siglos de bocas. El latín escrito se le había vuelto una lengua extranjera, como te pasa a ti con un texto de hace cuatrocientos años.\n\nEntonces lo que hace el monje es anotar en el margen, chiquito, en su idioma, lo que quiere decir cada cosa. Y en una de esas notas escribe una frase entera: «Cono aiutorio de nuestro dueno Christo». Es la primera vez en la historia que alguien escribe frases completas en algo que ya no es latín y todavía no es español. Hay lenguas que nacieron con un poema épico. Yo nací con una nota al margen hecha por un señor que no entendía el libro que leía.\n\nUna cosa más. El monje escribió dueno, sin eñe, porque la eñe no existía. Nació cien años después, por flojera: los copistas, que pagaban el pergamino, que era piel de borrego, en vez de escribir dos enes seguidas escribían una con una rayita arriba, y esa rayita se convirtió en la eñe. La letra más española de todas es una abreviatura para ahorrar piel de borrego. Cuando escribes «q» en vez de «que» en un mensaje estás haciendo lo mismo que ese copista.\n\nQuédate con esto: lo que hoy te parece un error en el margen, dentro de mil años puede ser una lengua.",
+      "voz": "lengua",
+      "audio": "audios/t06.mp3",
+      "ambiente": "monasterio",
+      "metros": 251.3,
+      "objeto": {
+        "nombre": "dueño",
+        "texto": "Entró en mí hacia el año 1070"
+      },
+      "imagen": "imagenes/t06.jpg",
+      "imagenPie": "Página 72 del códice de San Millán con la glosa «Cono aiutorio de nuestro dueno». Dominio público"
+    },
+    {
+      "id": "t07",
+      "etiqueta": "año 1200",
+      "titulo": "De la plaza al palacio",
+      "texto": "En el año 1200 ya tengo nombre, aunque no el de ahora: me dicen castellano, por Castilla, o romance, porque vengo de Roma. Y por primera vez alguien me usa para contar una historia larga y cantarla en las plazas: el Cantar de mio Cid. Lo canta un juglar, que se ganaba la vida contando historias de memoria en las ferias, como ahora alguien con un canal de videos, nada más que con menos seguidores. En esa época el juglar cantaba diciendo fijo, no hijo; o fermoso en lugar de hermoso. Si pudieras oír al juglar pensarías que es un portugués con gripa, y no andarías tan lejos.\n\nCincuenta años después, en 1252, subo del mercado al palacio. Un rey, Alfonso, al que llamaron el Sabio, decide que las leyes, las crónicas y los libros de ciencia se escriban en mí y no en latín, y pone a trabajar juntos en Toledo a traductores judíos, musulmanes y cristianos. En 1283 termina el Libro del ajedrez, donde en los dibujos juegan nobles y vagabundos, hombres y mujeres, moros, judíos y el propio rey. Jaque mate es persa, shah mat: el rey está muerto. Esa palabra viajó de la India a Persia, de Persia a Bagdad, de Bagdad a Córdoba y de Córdoba a tu teléfono.",
+      "voz": "lengua",
+      "audio": "audios/t07.mp3",
+      "ambiente": "plaza",
+      "metros": 91.0,
+      "objeto": {
+        "nombre": "fijo",
+        "texto": "Entró en mí hacia el año 1200"
+      },
+      "imagen": "imagenes/t07.jpg",
+      "imagenPie": "Alfonso X dicta a sus escribanos. Libro de los juegos, 1283, Biblioteca de El Escorial. Dominio público"
+    },
+    {
+      "id": "t08",
+      "etiqueta": "año 1492",
+      "titulo": "Tres puertas en un año",
+      "texto": "Si tuvieras que elegir un solo año de mi vida para hacer una película, sería este. Pasaron dos cosas, y las dos me cambiaron la cara.\n\nLa primera, en agosto de 1492, en Salamanca. Un profesor andaluz, Antonio de Nebrija, imprime la primera gramática de mi idioma. Nebrija le lleva el libro a la reina Isabel, y la reina, que era práctica, le hace la pregunta que le harías tú: ¿y esto para qué sirve? Nebrija se queda callado, y un obispo contesta por él: cuando su majestad someta pueblos que hablen lenguas extrañas, van a necesitar sus leyes, y con las leyes, su lengua. Nebrija lo escribió en el prólogo resumido en esta frase: «Siempre la lengua fue compañera del imperio.» Cuando Nebrija escribió eso, Colón todavía andaba en el mar. Nebrija pensaba en vascos, navarros e italianos. No sabía lo que venía. Nadie podía saberlo.\n\nLa segunda cosa pasa en octubre, en medio del océano. Colón, en una isla del Caribe, escribe en su diario una palabra que no existía en ninguna lengua de Europa. Primero intenta con una que ya tenía: balsa. Pero lo que ve no es una balsa: es un tronco ahuecado con gente adentro. Entonces se rinde y escribe lo que dicen los de ahí: «Estas son las canoas». Canoa es la primera palabra americana que entró en mí, y tres años después Nebrija ya la había metido en su diccionario. Detrás vinieron hamaca, huracán y caníbal, que es la palabra caribe mal oída por Colón: los taínos le hablaban de sus enemigos, los caribes, y Colón entendió que se comían a la gente, y de paso que tenían un solo ojo en la frente. Así de confiable era mi primer reportero.\n\nNebrija dijo que la lengua es compañera del imperio. Tenía razón. Lo que no dijo es que la compañera del imperio también se queda con las palabras de los conquistados, y que a veces se queda con tantas que ya no se sabe quién conquistó a quién.",
+      "voz": "lengua",
+      "audio": "audios/t08.mp3",
+      "ambiente": "puerto",
+      "metros": 204.4,
+      "objeto": {
+        "nombre": "canoa",
+        "texto": "Entró en mí hacia el año 1492"
+      },
+      "imagen": "imagenes/t08.jpg",
+      "imagenPie": "La Gramática castellana de Nebrija, 1492, Real Biblioteca de Palacio. Foto: Laci3, CC0"
+    },
+    {
+      "id": "t09",
+      "etiqueta": "año 1519",
+      "titulo": "La lengua",
+      "texto": "Ahora sí estoy de este lado del mar, y lo primero que me pasa es que no entiendo nada, igual que Lucio en la playa. Lo que me salvó fue una muchacha de tu edad.\n\nEl año es 1519. En la costa de Tabasco, después de una batalla, un cacique le entrega a Cortés veinte mujeres como regalo. Una tiene menos de veinte años, nació cerca de Coatzacoalcos y la vendieron de niña a unos comerciantes mayas; por eso habla náhuatl, que era su lengua, y maya, que aprendió de esclava. La bautizan Marina. Cortés trae además a un náufrago, Jerónimo de Aguilar, que vivió ocho años entre los mayas. Y arma una cadena: Cortés le habla en castellano a Aguilar, Aguilar le traduce al maya a Marina, Marina le traduce al náhuatl a los enviados de Moctezuma, y de regreso. Un imperio entero se negoció pasando por tres lenguas y dos cerebros, y ninguno de los dos era el de Cortés.\n\nLos nahuas le decían Malintzin, porque el náhuatl no tiene erre y el tzin del final es una terminación de respeto, como doña. Por bocas como la suya entraron en mí palabras que hoy el mundo entero cree que son mías: chocolate, tomate, aguacate, chile, chicle, coyote, tianguis, cuate, escuincle. El náhuatl terminaba muchas palabras en tl, un sonido que yo no sé hacer al final, así que lo convertí en te: tomatl, tomate. Es mi manera de masticar lo que no puedo tragar entero.\n\nPero lo que de verdad te podría interesar de esta época pasó aquí, en tu sierra. En 1570, el rey Felipe II firmó que el náhuatl sería la lengua general de los indios de la Nueva España. Pasó porque los frailes, que tenían que convertir a millones de personas que hablaban cientos de lenguas, hicieron una cuenta sencilla: en vez de aprender cien idiomas, aprendemos uno, el que ya usaban los aztecas para cobrar el tributo, y con ese les predicamos a todos.\n\nAhora mira la Sierra Gorda, donde estás. Aquí no se hablaba náhuatl; se hablaban xi'iui y teenek. Y sin embargo algunos pueblos se llaman Jalpan o Ahuacatlán. Una lengua que nunca fue la de aquí le puso nombre a casi todo. Sin embargo, Concá sí es pame.\n\nChocolate es la palabra de esta parada. Y ni siquiera sabemos bien qué quería decir: la explicación de «agua amarga» de los libros es dudosa.",
+      "voz": "lengua",
+      "audio": "audios/t09.mp3",
+      "ambiente": "mercado",
+      "metros": 18.9,
+      "objeto": {
+        "nombre": "chocolate",
+        "texto": "Entró en mí hacia el año 1519"
+      },
+      "imagen": "imagenes/t09.jpg",
+      "imagenPie": "Malintzin interpreta entre Cortés y los señores tlaxcaltecas. Lienzo de Tlaxcala, c. 1585. Dominio público"
+    },
+    {
+      "id": "t10",
+      "etiqueta": "año 1605",
+      "titulo": "Cambio de voz",
+      "texto": "Di «casa». Ahora di «caza», la de cazar venados. ¿Las dijiste igual? Claro que sí. Sin embargo, un señor de Madrid no; él hace el sonido de la zeta con la lengua entre los dientes. Esta parada explica por qué tú no, y la respuesta está en un puerto, en unas mujeres y en un libro con una equis.\n\nCuando los españoles oyeron Meshico, lo escribieron con la letra que entonces sonaba sh, es decir, la x. Perfectamente lógico. Pero en el siglo 17 yo cambié de voz y el sonido sh se fue endureciendo hasta volverse el de la jota de ahora, del fondo de la garganta. Pero México ya estaba escrito en muchos lados, por eso México se escribe con equis y suena con jota: esa equis es una fotografía de cómo sonaba yo en 1521, que nadie quiso borrar.\n\nEl cambio fue más grande. La efe de las palabras viejas, la de fijo y fazer, primero se convirtió en una hache aspirada, como una jota suave, y luego se calló del todo. Fijo se volvió hijo. Si te preguntas por qué escribes una hache que no suena: es la lápida de una efe. Y si has oído a alguien del rancho decir que alguien «se jue», estás oyendo la hache de hace quinientos años, que en el campo no se calló del todo. No hablan mal: solo hablan más viejo.\n\nY ahora lo de casa y caza. En Sevilla, el único puerto desde el que se podía salir a América, la gente no distinguía la ese de la zeta: todo se decía con ese. Un historiador que contó uno por uno a los primeros cincuenta mil pobladores de América encontró que dos de cada tres mujeres de los primeros años eran del reino de Sevilla. Los que no eran andaluces se pasaban meses en Sevilla esperando el permiso para embarcar, y se les pegaba el acento. Y como las mujeres eran las que enseñaban a hablar a los niños, América entera aprendió a hablar como sevillanas. Un lingüista lo resumió así: la zeta de España no se perdió en el camino a América; nunca se embarcó.",
+      "voz": "lengua",
+      "audio": "audios/t10.mp3",
+      "ambiente": "corral",
+      "metros": 60.2,
+      "objeto": {
+        "nombre": "hijo",
+        "texto": "Entró en mí hacia el año 1605"
+      },
+      "imagen": "imagenes/t10.jpg",
+      "imagenPie": "Portada de la primera edición del Quijote, Madrid, 1605. Dominio público"
+    },
+    {
+      "id": "t11",
+      "etiqueta": "año 1713",
+      "titulo": "Me quisieron fijar",
+      "texto": "¿Te acuerdas del maestro de los doscientos veintisiete regaños? En esta parada le ponen sueldo y escudo. Y vuelve a perder, pero con más estilo.\n\nEs el año 1713. En Madrid ocho señores fundan una academia para cuidarme. Les pareció que yo había llegado a mi punto perfecto, con el Quijote, y que lo que tocaba era dejarme quieta, para que no me pasara lo que le pasó al latín, que de tanto usarse se convirtió en mí. Eligieron un lema de tres verbos, que todavía está en su escudo: «Limpia, fija y da esplendor». Y un dibujo: un crisol en el fuego, donde se funde el oro para quitarle la basura. Yo era el oro. La basura, supongo, era la gente.\n\nY trabajaron en serio, eso hay que reconocérselo. Hicieron un diccionario de seis tomos y después arreglaron la ortografía, y aquí sí les debo varias: philosophia se volvió filosofía, y theatro, teatro. Y en 1815 tomaron la decisión que te anuncié: como la equis ya no sonaba sh, ordenaron que todo pasara a jota. Dixo, dijo. Quixote, Quijote. Y México, Méjico.\n\nPasó entonces algo que me gusta mucho, y más porque pasó aquí. En 1821 México se independiza, y una de las primeras decisiones que toma este país sobre mí es una letra: los mexicanos se negaron a escribir Méjico con jota. Escribes México con equis porque alguien, hace doscientos años, desobedeció una regla de ortografía. Que es, si lo piensas, la historia completa de mi vida en una letra.\n\nPero la independencia abrió una pregunta incómoda, y te la hago a ti. En 1810, ¿cuánta gente en este país me hablaba? Seis de cada diez no. Hablaban náhuatl, otomí, maya, zapoteco, pame. Los que me hablaban eran una minoría, y eran los que mandaban.\n\nY del otro lado del continente, en 1847, un venezolano que vivía en Chile, Andrés Bello, publicó una gramática con una frase en el prólogo que a Madrid no le gustó nada: «No tengo la pretensión de escribir para los castellanos. Mis lecciones se dirigen a mis hermanos, los habitantes de Hispanoamérica.»\n\nEra la primera vez que alguien decía en voz alta que yo también era de este lado, y no una cosa prestada.",
+      "voz": "lengua",
+      "audio": "audios/t11.mp3",
+      "ambiente": "sala",
+      "metros": 75.6,
+      "objeto": {
+        "nombre": "esplendor",
+        "texto": "Entró en mí hacia el año 1713"
+      },
+      "imagen": "imagenes/t11.jpg",
+      "imagenPie": "El lema de la Academia en un grabado de 1737. Reproducción: Jojagal, CC0"
+    },
+    {
+      "id": "t12",
+      "etiqueta": "año 1930",
+      "titulo": "La voz de la América Latina",
+      "texto": "Hoy, cuando una canción se vuelve famosa, la oye alguien en Tijuana y alguien en Buenos Aires el mismo día, y te parece lo más normal del mundo. En mi vida eso empezó una noche de septiembre, arriba de un cine.\n\nEl año es 1930. Arriba del cine Olimpia, en el centro de la Ciudad de México, alguien enciende un transmisor y dice una frase que iba a repetirse durante décadas: «Esta es la XEW, la voz de la América Latina desde México.»\n\nHasta ese día cada pueblo me hablaba a su manera, y nadie sabía cómo me hablaban en el pueblo de al lado. A partir de ese día, por primera vez, un continente entero empezó a oír la misma voz al mismo tiempo, y esa voz era mexicana. No fue un plan cultural: fue un negocio de una cervecería y una compañía de radios. Pero de Tijuana a Buenos Aires la gente aprendió a reconocer un acento, y era el de aquí.\n\nLuego vino el cine, y con el cine un cómico de carpa, Mario Moreno, Cantinflas, cuyo número consistía en hablar mucho, con gran seguridad, sin decir absolutamente nada. Lo hacía tan bien que la gente empezó a usar su nombre como verbo, y en 1992 la Academia aceptó la palabra: cantinflear, «hablar o actuar de forma disparatada e incongruente y sin decir nada con sustancia».\n\nDespués vino el doblaje: cuando Hollywood empezó a hablar en español, lo intentaron en Estados Unidos y en Argentina y a nadie le gustó, así que terminaron haciéndolo en México, y desde los años cincuenta casi todo lo que América Latina ve doblado lo ve con voz mexicana. Por eso Gokú grita en mexicano desde Tijuana hasta la Patagonia, y un niño de Bogotá dice «¡órale!» sin saber de dónde lo sacó.\n\nLa palabra de esta parada es cantinflear. No todos los idiomas tienen un verbo para hablar sin decir nada, y yo lo tengo gracias a un señor que lo hacía a propósito.",
+      "voz": "lengua",
+      "audio": "audios/t12.mp3",
+      "ambiente": "radio",
+      "metros": 151.9,
+      "objeto": {
+        "nombre": "cantinflear",
+        "texto": "Entró en mí hacia el año 1930"
+      },
+      "imagen": "imagenes/t12.jpg",
+      "imagenPie": "Radio de bulbos Philco, hacia 1937. Foto: Joe Haupt, CC BY-SA 2.0, Wikimedia Commons"
+    },
+    {
+      "id": "t13",
+      "etiqueta": "año 1970",
+      "titulo": "Lo que cuesta una palabra",
+      "texto": "Si en tu familia alguien sabía palabras en otra lengua, tu abuela, un tío, la señora que te cuidaba, di una ahora, en voz alta. Si no te sale ninguna, esta parada explica por qué.\n\nEl año es 1970. Una escuela rural, de las que construyó el gobierno a miles. Aquí te tengo que contar algo que no me deja bien parada, y como te prometí hablar con la verdad, lo cuento.\n\nAcuérdate del dato de 1810: seis de cada diez personas en México no me hablaban. Para 1930, los que hablaban una lengua indígena ya eran dieciséis de cada cien. Hoy son seis de cada cien. ¿Hubo una ley que prohibiera el náhuatl, el otomí, el pame? Nunca. Pasó exactamente lo mismo que con el latín en Hispania. La escuela estaba en mí, es decir, en español. El trabajo estaba en mí. Los papeles, la televisión, el doctor, el juez: todo en mí. Y si querías vender o subir en la escala social, aprendías la lengua del que mandaba, y tus hijos ya no aprendían la tuya.\n\nPero hubo algo más que la lógica, y es lo que más me cuesta decir. En muchas escuelas no bastaba con enseñar en español: se castigaba hablar otra cosa. Una investigadora que entrevistó a jóvenes nahuas de la Huasteca veracruzana, aquí cerca, cuenta que en la escuela les cobraban una moneda por cada palabra que dijeran en su lengua. Una moneda por palabra. Otros cuentan golpes, burlas, horas parados en el patio. ¿Quién quiere hablar una lengua en un lugar donde la castigan? Nadie. Los niños dejaron de hablarla, y después ya no se la enseñaron a sus hijos para ahorrarles el golpe. Las lenguas no se mueren de covid. Se mueren así: de vergüenza, una generación a la vez.\n\nAhora mira otra vez esta sierra. Los pames, la gente de aquí, se llaman a sí mismos xi'iuy. En San Luis Potosí todavía hay unos once mil hablantes. En Arroyo Seco, el municipio donde estás parado, el censo de 2020 contó a las personas que hablan pame. Once. Once personas.\n\nYo no soy inocente en esta historia. Las lenguas no deciden, pero yo soy la que se quedó con la escuela, con el trabajo y con la televisión, y la que se usó como castigo. Ser una lengua grande es también esto, y quien te cuente mi historia sin esta parada te está contando la versión para turistas.",
+      "voz": "lengua",
+      "audio": "audios/t13.mp3",
+      "ambiente": "escuela",
+      "metros": 28.0,
+      "objeto": {
+        "nombre": "xi'iuy",
+        "texto": "Entró en mí hacia el año 1970"
+      },
+      "imagen": "imagenes/t13.jpg",
+      "imagenPie": "Maestro rural camino a la escuela, Guanajuato. Foto: Juan Carlos Fonseca Mata, CC BY-SA 4.0, Wikimedia Commons"
+    },
+    {
+      "id": "t14",
+      "etiqueta": "año 2003",
+      "titulo": "Sigo abriendo la puerta",
+      "texto": "Esta parada tiene groserías, te aviso. Pocas, y con su etimología, que es lo que las vuelve cultura.\n\nEs el año 2003. Una ley nueva dice, por fin, que las sesenta y ocho lenguas indígenas de México son lenguas nacionales, con la misma validez que yo. Llegó tarde, y una ley no devuelve a los que ya dejaron de hablar, pero es la primera vez en quinientos años que un papel oficial dice que ellas y yo somos iguales.\n\nY mientras tanto yo sigo haciendo lo de siempre: dejar entrar gente. En 2010 el Colegio de México publicó un diccionario del español de México con una idea bastante rebelde: no registrar las palabras «pintorescas», sino las que la gente usa de verdad. Ahí entraron güey, chafa, neta. Güey es buey, con la be vuelta ge en la boca de la gente, como «güeno» y «agüelo»; empezó siendo un insulto de rancho, el animal lento, y terminó siendo la palabra con la que les dices a tus amigos que los quieres. Chido está en todos los diccionarios y ninguno sabe de dónde salió. Pendejo viene del latín pectiniculus, que quería decir vello púbico; primero fue el pelo, luego el muchacho al que apenas le salía, y de ahí al tonto. La palabra más mexicana de todas, chingar, viene del caló de los gitanos de España y quería decir pelear; en México tomó los otros veinte significados.\n\nLa Academia de Madrid también ha ido abriendo la puerta, a su ritmo. Chilango entró al diccionario en 2022. Espóiler, en 2024, con una definición que termina así: «dime si te ha gustado la serie, pero no me hagas un espóiler». Crush, cringe y stalkear siguen afuera, al día de hoy. Ya entrarán, o no; eso lo decide la gente, y la Academia llega después a tomar nota.\n\nUna lingüista de la UNAM, Concepción Company, dice que lo que mejor define al español de aquí no son las palabras en náhuatl, que son pocas, sino la cortesía: que el mexicano es capaz hasta de disminuir el tiempo, dice ahorita, que a veces quiere decir nunca, pide un segundito y tiene un terrenito aunque sean cien hectáreas.",
+      "voz": "lengua",
+      "audio": "audios/t14.mp3",
+      "ambiente": "cocina",
+      "metros": 23.1,
+      "objeto": {
+        "nombre": "apapachar",
+        "texto": "Entró en mí hacia el año 2003"
+      },
+      "imagen": "imagenes/t14.jpg",
+      "imagenPie": "Tianguis de Tonalá, Jalisco. Foto: Gzzz, CC BY-SA 4.0, Wikimedia Commons"
+    },
+    {
+      "id": "t15",
+      "etiqueta": "año 2020",
+      "titulo": "El latín de ahora",
+      "texto": "Piensa en la última palabra en inglés que escribiste en un mensaje. No la busques, nada más piénsala. Ya. Esa palabra entró por la misma puerta que Lucio.\n\nEs el año 2020. Cachar, parkear, googlear, chatear. ¿De dónde vienen? De la puerta del que manda. Te doy el número, que es de los pocos que vale la pena recordar: el inglés lo hablan casi mil quinientos millones de personas, y de esos, tres de cada cuatro no lo mamaron. Lo aprendieron, porque el trabajo, la ciencia, internet, los videojuegos y las canciones estaban en inglés. ¿Te suena? Es lo que le pasaba al latín en Hispania. Nadie te obliga a hablar inglés; nada más resulta que las cosas están en inglés. El inglés es el latín de ahora, pero eso no quiere decir que esté en peligro de extinción, después de todo me usan diariamente quinientos veinte millones de hablantes.\n\nFíjate además en cómo mastico las palabras en inglés. No dices «catch»: dices cachar, con una terminación mía, y lo conjugas: caché, cachamos. Es exactamente lo que hice con tomatl.\n\nLa otra puerta grande de esta época es la del Norte, y esa te queda más cerca. Sesenta y cinco millones de personas me hablan en Estados Unidos, más que en España. Muchas son tu familia, y me hablan como pueden, con dos lenguas en la boca, que es como me ha hablado todo el mundo desde el inicio de mi vida. Troca, de truck, ya está en el diccionario de la Academia: «camioneta para transporte o reparto». Lonche y parquear también.\n\nSi alguien en tu familia se burla de cómo hablan los primos pochos, cuéntale lo de los cuatro mil muchachos de Carteia, que también hablaban como podían, y mira dónde acabó eso.",
+      "voz": "lengua",
+      "audio": "audios/t15.mp3",
+      "ambiente": "teclado",
+      "metros": 11.9,
+      "objeto": {
+        "nombre": "troca",
+        "texto": "Entró en mí hacia el año 2020"
+      },
+      "imagen": "imagenes/t15.jpg",
+      "imagenPie": "El muro fronterizo entrando al mar, Tijuana. Foto: Tony Webster, CC BY 2.0, Wikimedia Commons"
+    },
+    {
+      "id": "t16",
+      "etiqueta": "hoy",
+      "titulo": "El último paso es tuyo",
+      "texto": "Para aquí. Año 2026. Este paso lo diste tú, y es el único de los dos mil doscientos que es tuyo de verdad.\n\nQuinientos veinte millones de personas me hablan desde la cuna, y uno de cada cuatro es mexicano. Este país es el que más me habla en el mundo, y nadie lo tiene tan presente como debería. Si sigo creciendo como ahora, en el año 2100 me van a hablar mil millones de personas. Tú no vas a estar para verlo. Yo sí, pero distinta, con palabras que todavía no existen y que alguien de tu edad va a inventar sin pedir permiso, porque nunca nadie lo ha pedido.\n\nY ahora hazme un favor, el último. Di en voz alta una palabra que solo dice tu generación. Una que tu abuela no entienda. Una de esas que, si la escribieras en un examen, te la tacharían con tinta roja. Dila.\n\nYa está. Acabas de hacer lo mismo que el monje en el margen, que las muchachas de Córdoba, que Malintzin, que la señora de Concá con su segundito, que tu prima con la troca. Me cambiaste un poquito. Nadie te pidió permiso, y el maestro de los doscientos veintisiete regaños, donde quiera que esté, acaba de perder otra. Lleva mil setecientos años perdiendo y no se cansa. Yo tampoco.\n\nAhora, el examen. Empieza con las palabras que fuimos guardando y sigue con unas preguntas que no tienen respuesta correcta: lo que tú pienses. Se guarda en el morral, para que lo veas con tu profe.",
+      "voz": "lengua",
+      "audio": "audios/t16.mp3",
+      "ambiente": "silencio",
+      "metros": 4.2,
+      "imagen": "imagenes/t16.jpg",
+      "imagenPie": "El río Ayutla en Concá, Arroyo Seco. Foto: Isabel A01706197, CC BY-SA 4.0, Wikimedia Commons",
+      "ir": "e00"
+    },
+    {
+      "id": "e00",
+      "etiqueta": "Antes del examen",
+      "titulo": "¿Cómo te llamas?",
+      "texto": "Antes de las preguntas, escribe tu nombre: así tu profe sabe de quién es este morral cuando se lo enseñes.",
+      "voz": "lengua",
+      "metros": 0,
+      "enigma": {
+        "tipo": "abierta",
+        "pregunta": "Tu nombre y tu grupo",
+        "placeholder": "Nombre y grupo…",
+        "minimo": 2,
+        "etiquetaMorral": "Nombre",
+        "saltar": true,
+        "recompensa": {
+          "titulo": "Gracias",
+          "texto": "Ahora sí, el examen. Son seis cosas.",
+          "voz": "lengua"
+        }
+      }
+    },
+    {
+      "id": "e01",
+      "etiqueta": "Examen · 1 de 6",
+      "titulo": "El orden del morral",
+      "texto": "Seis palabras de tu morral, revueltas. Tócalas en el orden en que entraron en mí, de la más vieja a la más nueva.",
+      "voz": "lengua",
+      "metros": 0,
+      "enigma": {
+        "tipo": "secuencia",
+        "pregunta": "Ordena las palabras de la más antigua a la más nueva.",
+        "secuencia": [
+          "caballo",
+          "ojalá",
+          "fijo",
+          "canoa",
+          "chocolate",
+          "troca"
+        ],
+        "pistas": [
+          "Caballo llegó con los soldados romanos: va primero.",
+          "Ojalá es árabe (711); fijo es del Cid (1200); canoa es de 1492.",
+          "Chocolate entró con Malintzin (1519) y troca con el Norte (ahora)."
+        ],
+        "saltar": true,
+        "error": "Ese orden no es. Piensa en el camino.",
+        "recompensa": {
+          "titulo": "Ficha ganada",
+          "texto": "Caballo, ojalá, fijo, canoa, chocolate, troca. Dos mil años en seis palabras.",
+          "voz": "lengua",
+          "objeto": {
+            "nombre": "Ficha 1",
+            "texto": "Acierto: el orden del morral"
+          }
+        }
+      }
+    },
+    {
+      "id": "e02",
+      "etiqueta": "Examen · 2 de 6",
+      "titulo": "El que trajo el latín",
+      "texto": "Pregunta 2 de 6. Contesta con tus palabras y guarda.",
+      "voz": "lengua",
+      "metros": 0,
+      "enigma": {
+        "tipo": "respuesta",
+        "contiene": true,
+        "larga": true,
+        "guardarRespuesta": true,
+        "pregunta": "¿Quién trajo el latín a Hispania en el año 218 antes de Cristo?",
+        "respuesta": [
+          "soldado",
+          "lucio",
+          "legion",
+          "ejercito",
+          "romanos",
+          "cuartel"
+        ],
+        "placeholder": "Escribe tu respuesta…",
+        "etiquetaMorral": "P2",
+        "pistas": [
+          "Acuérdate del muchacho de la playa.",
+          "No era poeta ni senador.",
+          "Tenía hambre y pidió pan: era un soldado."
+        ],
+        "saltar": true,
+        "error": "No es eso. Piensa en lo que oíste en esa parada.",
+        "recompensa": {
+          "titulo": "Ficha ganada",
+          "texto": "Lucio, el del pan. De esa boca saliste tú.",
+          "voz": "lengua",
+          "objeto": {
+            "nombre": "Ficha 2",
+            "texto": "Acierto del examen"
+          }
+        }
+      }
+    },
+    {
+      "id": "e03",
+      "etiqueta": "Examen · 3 de 6",
+      "titulo": "Ojalá",
+      "texto": "Pregunta 3 de 6. Contesta con tus palabras y guarda.",
+      "voz": "lengua",
+      "metros": 0,
+      "enigma": {
+        "tipo": "respuesta",
+        "contiene": true,
+        "larga": true,
+        "guardarRespuesta": true,
+        "pregunta": "¿En qué lengua estás rezando cuando dices «ojalá»?",
+        "respuesta": [
+          "arabe",
+          "árabe",
+          "musulm",
+          "al-andalus",
+          "andalus",
+          "moro"
+        ],
+        "placeholder": "Escribe tu respuesta…",
+        "etiquetaMorral": "P3",
+        "pistas": [
+          "Entró en el año 711.",
+          "Es «si Dios quisiera», en la lengua de Córdoba.",
+          "Law sha Allah."
+        ],
+        "saltar": true,
+        "error": "No es eso. Piensa en lo que oíste en esa parada.",
+        "recompensa": {
+          "titulo": "Ficha ganada",
+          "texto": "Law sha Allah. Ocho siglos no se olvidan.",
+          "voz": "lengua",
+          "objeto": {
+            "nombre": "Ficha 3",
+            "texto": "Acierto del examen"
+          }
+        }
+      }
+    },
+    {
+      "id": "e04",
+      "etiqueta": "Examen · 4 de 6",
+      "titulo": "Las primeras frases",
+      "texto": "Pregunta 4 de 6. Contesta con tus palabras y guarda.",
+      "voz": "lengua",
+      "metros": 0,
+      "enigma": {
+        "tipo": "respuesta",
+        "contiene": true,
+        "larga": true,
+        "guardarRespuesta": true,
+        "pregunta": "¿Quién escribió las primeras frases en algo que ya no era latín, y dónde?",
+        "respuesta": [
+          "monje",
+          "margen",
+          "monasterio",
+          "san millan",
+          "rioja",
+          "acordeon",
+          "fraile"
+        ],
+        "placeholder": "Escribe tu respuesta…",
+        "etiquetaMorral": "P4",
+        "pistas": [
+          "Fue hacia 1070, en La Rioja.",
+          "Lo hizo como quien hace acordeón.",
+          "Un monje, en el margen de un libro de sermones."
+        ],
+        "saltar": true,
+        "error": "No es eso. Piensa en lo que oíste en esa parada.",
+        "recompensa": {
+          "titulo": "Ficha ganada",
+          "texto": "Mi acta de nacimiento es un acordeón.",
+          "voz": "lengua",
+          "objeto": {
+            "nombre": "Ficha 4",
+            "texto": "Acierto del examen"
+          }
+        }
+      }
+    },
+    {
+      "id": "e05",
+      "etiqueta": "Examen · 5 de 6",
+      "titulo": "La primera palabra americana",
+      "texto": "Pregunta 5 de 6. Contesta con tus palabras y guarda.",
+      "voz": "lengua",
+      "metros": 0,
+      "enigma": {
+        "tipo": "respuesta",
+        "contiene": true,
+        "larga": true,
+        "guardarRespuesta": true,
+        "pregunta": "¿Cuál fue la primera palabra americana que entró al español?",
+        "respuesta": [
+          "canoa"
+        ],
+        "placeholder": "Escribe tu respuesta…",
+        "etiquetaMorral": "P5",
+        "pistas": [
+          "La anotó Colón en su diario, en octubre de 1492.",
+          "Primero intentó con «balsa».",
+          "Es una embarcación de un solo tronco."
+        ],
+        "saltar": true,
+        "error": "No es eso. Piensa en lo que oíste en esa parada.",
+        "recompensa": {
+          "titulo": "Ficha ganada",
+          "texto": "Canoa, octubre de 1492. Tres años después, en el diccionario.",
+          "voz": "lengua",
+          "objeto": {
+            "nombre": "Ficha 5",
+            "texto": "Acierto del examen"
+          }
+        }
+      }
+    },
+    {
+      "id": "e06",
+      "etiqueta": "Examen · 6 de 6",
+      "titulo": "La equis de México",
+      "texto": "Pregunta 6 de 6. Contesta con tus palabras y guarda.",
+      "voz": "lengua",
+      "metros": 0,
+      "enigma": {
+        "tipo": "respuesta",
+        "contiene": true,
+        "larga": true,
+        "guardarRespuesta": true,
+        "pregunta": "¿Por qué México se escribe con x pero suena con jota?",
+        "respuesta": [
+          "sh",
+          "sonaba",
+          "1521",
+          "letra",
+          "foto",
+          "cambio",
+          "cambió",
+          "meshico",
+          "equis"
+        ],
+        "placeholder": "Escribe tu respuesta…",
+        "etiquetaMorral": "P6",
+        "pistas": [
+          "Piensa en cómo oyeron «Meshico» los españoles.",
+          "La equis sonaba sh en el siglo XVI; luego el sonido cambió.",
+          "La letra se quedó escrita como estaba: es una foto de 1521."
+        ],
+        "saltar": true,
+        "error": "Casi. Explica qué sonido tenía la equis entonces y qué pasó después.",
+        "recompensa": {
+          "titulo": "Ficha ganada",
+          "texto": "Una foto de 1521 que nadie quiso borrar.",
+          "voz": "lengua",
+          "objeto": {
+            "nombre": "Ficha 6",
+            "texto": "Acierto del examen"
+          },
+          "ir": "FIN"
+        }
+      }
+    }
+  ],
+  "cierre": {
+    "titulo": "Caminaste dos mil años",
+    "texto": "Abajo están las palabras que recogiste, la ficha del orden y tus respuestas. Enséñaselo a tu profe desde esta pantalla. La lengua que caminaste sigue cambiando en tu boca. Sonidos de Freesound: xserra, Diegolar y taurindb (CC BY 4.0), exuberate (CC BY 3.0), tim.kahn (CC BY-NC 4.0) y grabaciones CC0 de aurelien.leveque, SanChago, nicotep, pillonoise, cvltiv8r, echobones, ciudadreptil, sinewave1kHz, itinerantmonk108, jayfrosting, OwennewO, exterminat, 9voltplasma y SoundsLikeFoley. Imágenes de Wikimedia Commons con su crédito en cada parada.",
+    "enlaces": [
+      {
+        "texto": "Museo de Palabras · Campus Concá",
+        "url": "https://campus-conca.github.io/etimologias/museo/galeria.html"
+      },
+      {
+        "texto": "DECEL · diccionario etimológico",
+        "url": "https://etimologias.dechile.net/"
+      }
+    ]
+  },
+  "archivos": [
+    "./audios/ambiente-corral.mp3",
+    "./audios/ambiente-escritorio.mp3",
+    "./audios/ambiente-foro.mp3",
+    "./audios/ambiente-gabinete.mp3",
+    "./audios/ambiente-godos.mp3",
+    "./audios/ambiente-imprenta-puerto.mp3",
+    "./audios/ambiente-mar.mp3",
+    "./audios/ambiente-monasterio.mp3",
+    "./audios/ambiente-pantalla.mp3",
+    "./audios/ambiente-plaza.mp3",
+    "./audios/ambiente-pueblo-quieto.mp3",
+    "./audios/ambiente-pueblo.mp3",
+    "./audios/ambiente-radio.mp3",
+    "./audios/ambiente-tianguis.mp3",
+    "./audios/ambiente-tlatelolco.mp3",
+    "./audios/ambiente-zoco.mp3",
+    "./audios/campana.mp3",
+    "./audios/t01.mp3",
+    "./audios/t02.mp3",
+    "./audios/t03.mp3",
+    "./audios/t04.mp3",
+    "./audios/t05.mp3",
+    "./audios/t06.mp3",
+    "./audios/t07.mp3",
+    "./audios/t08.mp3",
+    "./audios/t09.mp3",
+    "./audios/t10.mp3",
+    "./audios/t11.mp3",
+    "./audios/t12.mp3",
+    "./audios/t13.mp3",
+    "./audios/t14.mp3",
+    "./audios/t15.mp3",
+    "./audios/t16.mp3",
+    "./imagenes/portada.svg",
+    "./imagenes/t01.jpg",
+    "./imagenes/t02.jpg",
+    "./imagenes/t03.jpg",
+    "./imagenes/t04.jpg",
+    "./imagenes/t05.jpg",
+    "./imagenes/t06.jpg",
+    "./imagenes/t07.jpg",
+    "./imagenes/t08.jpg",
+    "./imagenes/t09.jpg",
+    "./imagenes/t10.jpg",
+    "./imagenes/t11.jpg",
+    "./imagenes/t12.jpg",
+    "./imagenes/t13.jpg",
+    "./imagenes/t14.jpg",
+    "./imagenes/t15.jpg",
+    "./imagenes/t16.jpg"
+  ]
+}
