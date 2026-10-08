@@ -32,3 +32,19 @@ Sin usar: 503644 Music band, Texcalyacac (alex_h_rosas, CC0). Los cortes y bucle
 | ambiente-pantalla (t15) | teclado + ciudad lejana | 396304 Typing on Logitech K811 (SoundsLikeFoley) · 610770 (ciudadreptil) | CC0 · CC0 |
 
 Sin usar: 192612 chain_rustle (sgossner, CC BY 4.0, dura un segundo); 168717 wood creak (jackmenhorn) llegó vacío. Receta en `clips2.py` (scratchpad).
+
+## Tercera pasada (7 de octubre, noche): menos repeticiones y cambios a mitad de parada
+
+| Clip | Capas | Fuentes | Licencias |
+|---|---|---|---|
+| ambiente-mar (t01) | olas + madera de barco crujiendo lejos | 803679 (cvltiv8r) · 168717 WOOD_CREAK (JackMenhorn, rampa de madera con el huracán Sandy) | CC0 · CC0 |
+| ambiente-foro (t02) | pasos sobre madera + murmullo | 351782 Rambla de Mar (tim.kahn) · 333415 Murmur (jayfrosting) | **CC BY-NC 4.0** · CC0 |
+| ambiente-escritorio (t03) | páginas + viento | 164806 · 135779 | CC0 · CC0 |
+| ambiente-monasterio (t06) | viento + páginas + campana lejana | 135779 · 164806 · 207439 | CC0 |
+| ambiente-plaza (t07) | mercado de Leipzig (0–45 s) + murmullo | 352922 (pillonoise) · 333415 | CC0 |
+| ambiente-imprenta (t08, inicio) | prensa tipográfica | 174822 (exuberate) | **CC BY 3.0** |
+| ambiente-barco (t08 desde Colón; t10 desde Sevilla) | madera crujiendo + olas | 168717 (JackMenhorn) · 803679 | CC0 |
+| ambiente-cigarras (t09 Sierra; t13 pames) | cigarras y trueno | 417632 (aurelien.leveque) | CC0 |
+| ambiente-campanas (t11, 1821) | repique | 207439 (sinewave1kHz) | CC0 |
+| ambiente-canto (t05, la jarcha) | canto de boda de Tánger, bajo | 140143 (xserra) | **CC BY 4.0** |
+| ambiente-publico (t12, el cine) | murmullo de sala | 333415 (jayfrosting) | CC0 |

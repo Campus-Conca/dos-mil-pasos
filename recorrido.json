@@ -69,7 +69,7 @@
   },
   "portada": {
     "imagen": "imagenes/portada.svg",
-    "meta": "16 paradas · 1.5 km · dos horas de clase"
+    "meta": "16 paradas · 1.5 km · un paso, un año"
   },
   "paleta": {
     "fondo": "#F4EBD9",
@@ -99,7 +99,13 @@
     "zoco": "audios/ambiente-zoco.mp3",
     "monasterio": "audios/ambiente-monasterio.mp3",
     "plaza": "audios/ambiente-plaza.mp3",
-    "puerto": "audios/ambiente-imprenta-puerto.mp3",
+    "puerto": "audios/ambiente-imprenta.mp3",
+    "imprenta": "audios/ambiente-imprenta.mp3",
+    "barco": "audios/ambiente-barco.mp3",
+    "cigarras": "audios/ambiente-cigarras.mp3",
+    "campanas": "audios/ambiente-campanas.mp3",
+    "canto": "audios/ambiente-canto.mp3",
+    "publico": "audios/ambiente-publico.mp3",
     "mercado": "audios/ambiente-tlatelolco.mp3",
     "corral": "audios/ambiente-corral.mp3",
     "sala": "audios/ambiente-gabinete.mp3",
@@ -200,6 +206,12 @@
         "nombre": "ojalá",
         "texto": "Entró en mí hacia el año 711"
       },
+      "cambios": [
+        {
+          "en": 122.9,
+          "ambiente": "canto"
+        }
+      ],
       "imagen": "imagenes/t05.jpg",
       "imagenPie": "Arcos de la Mezquita de Córdoba. Foto: Alvaro.vinuela.carnicero, CC BY-SA 4.0, Wikimedia Commons"
     },
@@ -232,6 +244,12 @@
         "nombre": "fijo",
         "texto": "Entró en mí hacia el año 1200"
       },
+      "cambios": [
+        {
+          "en": 48.7,
+          "ambiente": "gabinete"
+        }
+      ],
       "imagen": "imagenes/t07.jpg",
       "imagenPie": "Alfonso X dicta a sus escribanos. Libro de los juegos, 1283, Biblioteca de El Escorial. Dominio público"
     },
@@ -248,6 +266,12 @@
         "nombre": "canoa",
         "texto": "Entró en mí hacia el año 1492"
       },
+      "cambios": [
+        {
+          "en": 57.7,
+          "ambiente": "barco"
+        }
+      ],
       "imagen": "imagenes/t08.jpg",
       "imagenPie": "La Gramática castellana de Nebrija, 1492, Real Biblioteca de Palacio. Foto: Laci3, CC0"
     },
@@ -264,6 +288,12 @@
         "nombre": "chocolate",
         "texto": "Entró en mí hacia el año 1519"
       },
+      "cambios": [
+        {
+          "en": 105.5,
+          "ambiente": "cigarras"
+        }
+      ],
       "imagen": "imagenes/t09.jpg",
       "imagenPie": "Malintzin interpreta entre Cortés y los señores tlaxcaltecas. Lienzo de Tlaxcala, c. 1585. Dominio público"
     },
@@ -280,6 +310,12 @@
         "nombre": "hijo",
         "texto": "Entró en mí hacia el año 1605"
       },
+      "cambios": [
+        {
+          "en": 88.8,
+          "ambiente": "barco"
+        }
+      ],
       "imagen": "imagenes/t10.jpg",
       "imagenPie": "Portada de la primera edición del Quijote, Madrid, 1605. Dominio público"
     },
@@ -296,6 +332,16 @@
         "nombre": "esplendor",
         "texto": "Entró en mí hacia el año 1713"
       },
+      "cambios": [
+        {
+          "en": 85.4,
+          "ambiente": "campanas"
+        },
+        {
+          "en": 139.3,
+          "ambiente": "gabinete"
+        }
+      ],
       "imagen": "imagenes/t11.jpg",
       "imagenPie": "El lema de la Academia en un grabado de 1737. Reproducción: Jojagal, CC0"
     },
@@ -312,6 +358,12 @@
         "nombre": "cantinflear",
         "texto": "Entró en mí hacia el año 1930"
       },
+      "cambios": [
+        {
+          "en": 60.5,
+          "ambiente": "publico"
+        }
+      ],
       "imagen": "imagenes/t12.jpg",
       "imagenPie": "Radio de bulbos Philco, hacia 1937. Foto: Joe Haupt, CC BY-SA 2.0, Wikimedia Commons"
     },
@@ -328,6 +380,12 @@
         "nombre": "xi'iuy",
         "texto": "Entró en mí hacia el año 1970"
       },
+      "cambios": [
+        {
+          "en": 127.5,
+          "ambiente": "cigarras"
+        }
+      ],
       "imagen": "imagenes/t13.jpg",
       "imagenPie": "Maestro rural camino a la escuela, Guanajuato. Foto: Juan Carlos Fonseca Mata, CC BY-SA 4.0, Wikimedia Commons"
     },
@@ -395,7 +453,8 @@
           "texto": "Ahora sí, el examen. Son ocho cosas.",
           "voz": "lengua"
         }
-      }
+      },
+      "examen": true
     },
     {
       "id": "e01",
@@ -431,7 +490,8 @@
             "texto": "Acierto: el orden del morral"
           }
         }
-      }
+      },
+      "examen": true
     },
     {
       "id": "e02",
@@ -472,7 +532,8 @@
             "texto": "Acierto del examen"
           }
         }
-      }
+      },
+      "examen": true
     },
     {
       "id": "e03",
@@ -513,7 +574,8 @@
             "texto": "Acierto del examen"
           }
         }
-      }
+      },
+      "examen": true
     },
     {
       "id": "e04",
@@ -555,7 +617,8 @@
             "texto": "Acierto del examen"
           }
         }
-      }
+      },
+      "examen": true
     },
     {
       "id": "e05",
@@ -591,7 +654,8 @@
             "texto": "Acierto del examen"
           }
         }
-      }
+      },
+      "examen": true
     },
     {
       "id": "e06",
@@ -635,7 +699,8 @@
             "texto": "Acierto del examen"
           }
         }
-      }
+      },
+      "examen": true
     },
     {
       "id": "e07",
@@ -676,7 +741,8 @@
             "texto": "Acierto del examen"
           }
         }
-      }
+      },
+      "examen": true
     },
     {
       "id": "e08",
@@ -713,7 +779,8 @@
           },
           "ir": "FIN"
         }
-      }
+      },
+      "examen": true
     }
   ],
   "cierre": {
@@ -731,16 +798,21 @@
     ]
   },
   "archivos": [
+    "./audios/ambiente-barco.mp3",
+    "./audios/ambiente-campanas.mp3",
+    "./audios/ambiente-canto.mp3",
+    "./audios/ambiente-cigarras.mp3",
     "./audios/ambiente-corral.mp3",
     "./audios/ambiente-escritorio.mp3",
     "./audios/ambiente-foro.mp3",
     "./audios/ambiente-gabinete.mp3",
     "./audios/ambiente-godos.mp3",
-    "./audios/ambiente-imprenta-puerto.mp3",
+    "./audios/ambiente-imprenta.mp3",
     "./audios/ambiente-mar.mp3",
     "./audios/ambiente-monasterio.mp3",
     "./audios/ambiente-pantalla.mp3",
     "./audios/ambiente-plaza.mp3",
+    "./audios/ambiente-publico.mp3",
     "./audios/ambiente-pueblo-quieto.mp3",
     "./audios/ambiente-pueblo.mp3",
     "./audios/ambiente-radio.mp3",

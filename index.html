@@ -39,6 +39,9 @@ h1,h2,.tramo-titulo{font-family:var(--f-display)}
 #portada .portada-meta{font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--acento);font-weight:600;margin-top:6px}
 :root{--acento-trans:.9s}
 .eyebrow,.btn-principal,.cabecera .motor,.cabecera .crono .era,.rio-avance,.tramo-eyebrow,.morral-btn,.cierre-rot{transition:color var(--acento-trans),background var(--acento-trans),stroke var(--acento-trans)}
+#caminata.modo-examen .controles,#caminata.modo-examen .manual-caja,#caminata.modo-examen .rio-caja,#caminata.modo-examen .cabecera .distancia{display:none}
+#caminata.modo-examen .tramo-caja{justify-content:flex-start}
+#caminata.modo-examen .enigma-caja{margin-top:4px}
 .aviso{position:fixed;left:50%;bottom:118px;transform:translateX(-50%) translateY(20px);background:var(--acento);color:var(--sobre-acento,#2A1F0B);padding:10px 18px;border-radius:999px;font-size:14px;font-weight:600;box-shadow:0 8px 24px rgba(0,0,0,.18);opacity:0;pointer-events:none;transition:opacity .35s,transform .35s;z-index:40;white-space:nowrap;max-width:90vw;overflow:hidden;text-overflow:ellipsis}
 .aviso.visible{opacity:1;transform:translateX(-50%) translateY(0)}
 .portada-rio{margin:28px 0 8px}
@@ -437,12 +440,39 @@ $("btn-empezar").addEventListener("click", ()=> mostrar("instrucciones"));
 })();
 $("btn-volver").addEventListener("click", ()=> mostrar("portada"));
 
+/* Comprueba que todos los archivos estén guardados; si faltan, lo dice en la portada. */
+async function verificarDescarga(){
+  try{
+    if(!("caches" in window) || !R || !R.archivos) return null;
+    const keys = await caches.keys(); let faltan = 0;
+    for(const u of R.archivos){
+      let hay = false;
+      for(const k of keys){ const c = await caches.open(k); if(await c.match(u)){ hay = true; break; } }
+      if(!hay) faltan++;
+    }
+    return faltan;
+  }catch(e){ return null; }
+}
+/* Cuando llega una versión nueva del recorrido, el service worker nuevo toma el control:
+   la página se recarga una vez para no seguir mostrando el contenido viejo de la caché. */
+if("serviceWorker" in navigator){
+  let teniaControlador = !!navigator.serviceWorker.controller;
+  navigator.serviceWorker.addEventListener("controllerchange", ()=>{
+    if(teniaControlador && !$("caminata").classList.contains("activa")) location.reload();
+    teniaControlador = true;
+  });
+}
 /* Si el recorrido ya se descargó antes, "Iniciar" queda listo desde el arranque */
 if("serviceWorker" in navigator){
   navigator.serviceWorker.getRegistration().then(reg=>{
     if(reg){
       $("btn-empezar").disabled = false; $("btn-empezar").style.opacity = 1;
       $("estado-descarga").textContent = "Recorrido guardado. Puedes iniciar.";
+      const esperarR = setInterval(async ()=>{
+        if(!R) return; clearInterval(esperarR);
+        const f = await verificarDescarga();
+        if(f) $("estado-descarga").textContent = `Faltan ${f} archivo(s) por guardar: toca Descargar otra vez con señal.`;
+      }, 300);
     }
   }).catch(()=>{});
 }
@@ -683,6 +713,10 @@ function irA(id){
   if(espera > 0){
     estado.pendiente = t;
     estado.objetivoMetros = estado.metros + espera;
+  } else if(narracionActiva()){
+    /* Un tramo inmediato espera a que termine la voz del anterior (antes la cortaba:
+       el último audio de un recorrido se perdía cuando lo seguía un examen). */
+    estado.enCola = t;
   } else presentar(t);
 }
 function siguienteDe(t){
@@ -705,13 +739,15 @@ function ponerTexto(el, txt){
 }
 function presentar(t){
   estado.actual = t; estado.enCola = null;
+  /* t.examen: pantalla de examen, sin narración ni botones de avance (solo el enigma). */
+  $("caminata").classList.toggle("modo-examen", !!t.examen);
   estado.recorridos++;
   $("c-tramo-num").textContent = t.etiqueta || `Momento ${estado.recorridos}`;
   $("c-tramo-titulo").textContent = t.titulo || "";
   ponerTexto($("c-tramo-texto"), t.texto);
   ponerImagen(t.imagen, t.imagenPie);
   ambientar(t.ambiente);
-  reproducir(t);
+  if(t.examen){ detenerNarracion(); bajarAmbiente(); } else reproducir(t);
   $("c-opciones").classList.add("oculto");
   $("c-enigma").classList.add("oculto");
   $("btn-escanear").classList.add("oculto");
@@ -1088,12 +1124,23 @@ function reproducir(t){
     bajarAmbiente();
     narrElemento.onended = terminoNarracion;
     narrElemento.onerror = ()=> narrarTTS(t);   // respaldo si el archivo falla
+    /* t.cambios: [{en: segundos, ambiente: "nombre"}] cambia el ambiente a mitad de la
+       narración, donde la historia cambia de escenario. Solo con audio grabado. */
+    cambiosHechos = new Set();
+    narrElemento.ontimeupdate = ()=> aplicarCambios(t, narrElemento.currentTime);
     narrElemento.src = t.audio;
     narrElemento.play().catch(()=> narrarTTS(t));
   } else narrarTTS(t);
 }
+let cambiosHechos = new Set();
+function aplicarCambios(t, tiempo){
+  if(!t || !t.cambios) return;
+  t.cambios.forEach((c, i)=>{
+    if(!cambiosHechos.has(i) && tiempo >= c.en){ cambiosHechos.add(i); ambientar(c.ambiente); }
+  });
+}
 function detenerNarracion(){
-  if(narrElemento){ try{ narrElemento.onended = null; narrElemento.onerror = null; narrElemento.pause(); narrElemento.currentTime = 0; }catch(e){} }
+  if(narrElemento){ try{ narrElemento.onended = null; narrElemento.onerror = null; narrElemento.ontimeupdate = null; narrElemento.pause(); narrElemento.currentTime = 0; }catch(e){} }
   if("speechSynthesis" in window) speechSynthesis.cancel();
 }
 function narrarTTS(t){

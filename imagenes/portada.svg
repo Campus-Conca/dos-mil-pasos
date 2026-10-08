@@ -1,39 +1,34 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 220" role="img" aria-label="Un camino que serpentea de la playa al presente, con huellas y pequeños hitos">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 200" role="img" aria-label="Una línea de tiempo con huellas: de 218 antes de Cristo a hoy">
   <defs>
-    <path id="camino" d="M14,196 C70,196 60,150 110,146 S170,160 200,120 S250,70 300,72 S340,40 348,22"/>
+    <path id="ruta" d="M18,150 C70,150 90,90 140,90 S210,140 250,110 S320,56 342,52"/>
   </defs>
-  <!-- cielo y sol -->
-  <circle cx="300" cy="46" r="18" fill="#E7C27A" opacity=".55"/>
-  <circle cx="300" cy="46" r="11" fill="#E7C27A" opacity=".9"/>
-  <!-- cerros lejanos -->
-  <path d="M0,118 C40,96 70,100 100,112 S160,92 200,104 S260,84 300,96 S340,86 360,94 L360,130 L0,130 Z" fill="#2B1D14" opacity=".07"/>
-  <path d="M0,136 C50,118 90,130 130,124 S200,110 250,126 S320,112 360,124 L360,150 L0,150 Z" fill="#2B1D14" opacity=".10"/>
-  <!-- mar al pie -->
-  <path d="M0,206 C20,200 40,212 60,206 S100,200 120,206 S160,212 180,206" fill="none" stroke="#2B1D14" stroke-width="1.6" opacity=".35" stroke-linecap="round"/>
-  <path d="M0,214 C20,208 40,220 60,214 S100,208 120,214" fill="none" stroke="#2B1D14" stroke-width="1.6" opacity=".25" stroke-linecap="round"/>
-  <!-- camino -->
-  <use href="#camino" fill="none" stroke="#2B1D14" stroke-width="9" opacity=".10" stroke-linecap="round"/>
-  <use href="#camino" fill="none" stroke="#8C2F39" stroke-width="2.4" stroke-dasharray="6 7" stroke-linecap="round"/>
-  <!-- huellas -->
-  <g fill="#2B1D14" opacity=".55">
-    <ellipse cx="40" cy="188" rx="3.4" ry="5.2" transform="rotate(-70 40 188)"/>
-    <ellipse cx="54" cy="180" rx="3.4" ry="5.2" transform="rotate(-60 54 180)"/>
-    <ellipse cx="88" cy="150" rx="3.4" ry="5.2" transform="rotate(-20 88 150)"/>
-    <ellipse cx="146" cy="150" rx="3.4" ry="5.2" transform="rotate(-80 146 150)"/>
-    <ellipse cx="226" cy="98" rx="3.4" ry="5.2" transform="rotate(-50 226 98)"/>
-    <ellipse cx="272" cy="78" rx="3.4" ry="5.2" transform="rotate(-80 272 78)"/>
+  <!-- camino: sombra y línea punteada -->
+  <use href="#ruta" fill="none" stroke="#2B1D14" stroke-width="12" opacity=".08" stroke-linecap="round"/>
+  <use href="#ruta" fill="none" stroke="#8C2F39" stroke-width="2.6" stroke-dasharray="7 7" stroke-linecap="round"/>
+  <!-- huellas (pares) a lo largo del camino -->
+  <g fill="#2B1D14" opacity=".6">
+    <ellipse cx="44" cy="146" rx="3.2" ry="5" transform="rotate(-80 44 146)"/><ellipse cx="56" cy="152" rx="3.2" ry="5" transform="rotate(-80 56 152)"/>
+    <ellipse cx="100" cy="118" rx="3.2" ry="5" transform="rotate(-40 100 118)"/><ellipse cx="112" cy="104" rx="3.2" ry="5" transform="rotate(-40 112 104)"/>
+    <ellipse cx="168" cy="98" rx="3.2" ry="5" transform="rotate(-100 168 98)"/><ellipse cx="180" cy="110" rx="3.2" ry="5" transform="rotate(-100 180 110)"/>
+    <ellipse cx="226" cy="124" rx="3.2" ry="5" transform="rotate(-60 226 124)"/><ellipse cx="236" cy="112" rx="3.2" ry="5" transform="rotate(-60 236 112)"/>
+    <ellipse cx="282" cy="86" rx="3.2" ry="5" transform="rotate(-50 282 86)"/><ellipse cx="294" cy="76" rx="3.2" ry="5" transform="rotate(-50 294 76)"/>
   </g>
-  <!-- hitos: una piedra romana, una media luna, una pluma, una antena -->
-  <g stroke="#8C2F39" stroke-width="1.8" fill="#F4EBD9" stroke-linecap="round" stroke-linejoin="round">
-    <rect x="98" y="118" width="12" height="20" rx="1.5"/>
-    <path d="M104,122 v12 M101,128 h6"/>
-    <path d="M186,106 a9,9 0 1 0 0,18 a7,7 0 1 1 0,-18 z"/>
-    <path d="M238,66 c10,-14 20,-16 26,-16 c-2,10 -8,22 -20,24 l-6,2 z M244,74 l-8,8"/>
-    <path d="M318,54 v-24 M312,34 l6,-6 l6,6 M308,26 q10,-12 20,0"/>
+  <!-- hitos con año -->
+  <g font-family="Georgia, 'Times New Roman', serif" font-size="12" fill="#2B1D14" text-anchor="middle">
+    <circle cx="18" cy="150" r="5.5" fill="#8C2F39"/>
+    <text x="30" y="176" font-weight="bold">218 a. C.</text>
+    <text x="30" y="189" font-size="9.5" fill="#6b5a4a">llega el latín</text>
+    <circle cx="140" cy="90" r="4.5" fill="#F4EBD9" stroke="#8C2F39" stroke-width="2"/>
+    <text x="140" y="70" font-weight="bold">711</text>
+    <text x="140" y="56" font-size="9.5" fill="#6b5a4a">ocho siglos de árabe</text>
+    <circle cx="250" cy="110" r="4.5" fill="#F4EBD9" stroke="#8C2F39" stroke-width="2"/>
+    <text x="250" y="138" font-weight="bold">1492</text>
+    <text x="250" y="151" font-size="9.5" fill="#6b5a4a">cruza el mar</text>
+    <circle cx="342" cy="52" r="6" fill="#8C2F39"/>
+    <circle cx="342" cy="52" r="10.5" fill="none" stroke="#8C2F39" stroke-width="1.4" opacity=".45"/>
+    <text x="322" y="30" font-weight="bold">hoy</text>
+    <text x="322" y="16" font-size="9.5" fill="#6b5a4a">tú</text>
   </g>
-  <!-- punto de llegada -->
-  <circle cx="348" cy="22" r="5" fill="#8C2F39"/>
-  <circle cx="348" cy="22" r="9" fill="none" stroke="#8C2F39" stroke-width="1.4" opacity=".5"/>
-  <!-- punto de salida -->
-  <circle cx="14" cy="196" r="4" fill="#2B1D14" opacity=".7"/>
+  <!-- leyenda -->
+  <text x="180" y="196" font-family="Georgia, serif" font-size="9.5" fill="#8C2F39" text-anchor="middle" letter-spacing=".08em">UN PASO = UN AÑO</text>
 </svg>
