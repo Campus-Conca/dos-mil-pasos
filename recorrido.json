@@ -392,14 +392,14 @@
         "saltar": true,
         "recompensa": {
           "titulo": "Gracias",
-          "texto": "Ahora sí, el examen. Son seis cosas.",
+          "texto": "Ahora sí, el examen. Son ocho cosas.",
           "voz": "lengua"
         }
       }
     },
     {
       "id": "e01",
-      "etiqueta": "Examen · 1 de 6",
+      "etiqueta": "Examen · 1 de 8",
       "titulo": "El orden del morral",
       "texto": "Seis palabras de tu morral, revueltas. Tócalas en el orden en que entraron en mí, de la más vieja a la más nueva.",
       "voz": "lengua",
@@ -435,9 +435,9 @@
     },
     {
       "id": "e02",
-      "etiqueta": "Examen · 2 de 6",
+      "etiqueta": "Examen · 2 de 8",
       "titulo": "El que trajo el latín",
-      "texto": "Pregunta 2 de 6. Contesta con tus palabras y guarda.",
+      "texto": "Pregunta 2 de 8. Contesta con tus palabras y guarda.",
       "voz": "lengua",
       "metros": 0,
       "enigma": {
@@ -476,9 +476,9 @@
     },
     {
       "id": "e03",
-      "etiqueta": "Examen · 3 de 6",
+      "etiqueta": "Examen · 3 de 8",
       "titulo": "Ojalá",
-      "texto": "Pregunta 3 de 6. Contesta con tus palabras y guarda.",
+      "texto": "Pregunta 3 de 8. Contesta con tus palabras y guarda.",
       "voz": "lengua",
       "metros": 0,
       "enigma": {
@@ -517,9 +517,9 @@
     },
     {
       "id": "e04",
-      "etiqueta": "Examen · 4 de 6",
+      "etiqueta": "Examen · 4 de 8",
       "titulo": "Las primeras frases",
-      "texto": "Pregunta 4 de 6. Contesta con tus palabras y guarda.",
+      "texto": "Pregunta 4 de 8. Contesta con tus palabras y guarda.",
       "voz": "lengua",
       "metros": 0,
       "enigma": {
@@ -559,9 +559,9 @@
     },
     {
       "id": "e05",
-      "etiqueta": "Examen · 5 de 6",
+      "etiqueta": "Examen · 5 de 8",
       "titulo": "La primera palabra americana",
-      "texto": "Pregunta 5 de 6. Contesta con tus palabras y guarda.",
+      "texto": "Pregunta 5 de 8. Contesta con tus palabras y guarda.",
       "voz": "lengua",
       "metros": 0,
       "enigma": {
@@ -595,9 +595,9 @@
     },
     {
       "id": "e06",
-      "etiqueta": "Examen · 6 de 6",
+      "etiqueta": "Examen · 6 de 8",
       "titulo": "La equis de México",
-      "texto": "Pregunta 6 de 6. Contesta con tus palabras y guarda.",
+      "texto": "Pregunta 6 de 8. Contesta con tus palabras y guarda.",
       "voz": "lengua",
       "metros": 0,
       "enigma": {
@@ -632,6 +632,83 @@
           "voz": "lengua",
           "objeto": {
             "nombre": "Ficha 6",
+            "texto": "Acierto del examen"
+          }
+        }
+      }
+    },
+    {
+      "id": "e07",
+      "etiqueta": "Examen · 7 de 8",
+      "titulo": "Casa y caza",
+      "texto": "Pregunta 7 de 8. Contesta con tus palabras y guarda.",
+      "voz": "lengua",
+      "metros": 0,
+      "enigma": {
+        "tipo": "respuesta",
+        "contiene": true,
+        "larga": true,
+        "guardarRespuesta": true,
+        "pregunta": "¿Por qué tú dices casa y caza igual y un madrileño no?",
+        "respuesta": [
+          "sevilla",
+          "andalu",
+          "sevillan",
+          "puerto",
+          "embarc",
+          "mujeres"
+        ],
+        "placeholder": "Escribe tu respuesta…",
+        "etiquetaMorral": "P7",
+        "pistas": [
+          "Piensa en el único puerto desde donde se salía a América.",
+          "Dos de cada tres mujeres de los primeros años eran de ahí.",
+          "Sevilla: la zeta de España nunca se embarcó."
+        ],
+        "saltar": true,
+        "error": "No es eso. Piensa en lo que oíste en esa parada.",
+        "recompensa": {
+          "titulo": "Ficha ganada",
+          "texto": "La zeta de España nunca se embarcó. América aprendió a hablar como sevillanas.",
+          "voz": "lengua",
+          "objeto": {
+            "nombre": "Ficha 7",
+            "texto": "Acierto del examen"
+          }
+        }
+      }
+    },
+    {
+      "id": "e08",
+      "etiqueta": "Examen · 8 de 8",
+      "titulo": "El latín de ahora",
+      "texto": "Pregunta 8 de 8. Contesta con tus palabras y guarda.",
+      "voz": "lengua",
+      "metros": 0,
+      "enigma": {
+        "tipo": "respuesta",
+        "contiene": true,
+        "larga": true,
+        "guardarRespuesta": true,
+        "pregunta": "¿Qué lengua es «el latín de ahora» y por qué?",
+        "respuesta": [
+          "ingl"
+        ],
+        "placeholder": "Escribe tu respuesta…",
+        "etiquetaMorral": "P8",
+        "pistas": [
+          "Mira tu pantalla: cachar, googlear, chatear.",
+          "Es la lengua del trabajo, la ciencia, internet y las canciones; tres de cada cuatro la aprendieron.",
+          "El inglés, por la misma razón que el latín en Hispania: las cosas están en esa lengua."
+        ],
+        "saltar": true,
+        "error": "La lengua sí, pero falta el porqué. ¿Por qué entra por la puerta del que manda?",
+        "recompensa": {
+          "titulo": "Ficha ganada",
+          "texto": "El inglés. Nadie te obliga; nada más resulta que las cosas están en inglés.",
+          "voz": "lengua",
+          "objeto": {
+            "nombre": "Ficha 8",
             "texto": "Acierto del examen"
           },
           "ir": "FIN"
