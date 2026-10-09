@@ -1077,8 +1077,14 @@ function resolverEnigma(t, saltado){
     ponerImagen(rec.imagen, rec.imagenPie);
     if(rec.ambiente) ambientar(rec.ambiente);
     if(rec.objeto) ganarObjeto(rec.objeto);
-    reproducir(rec);
     const seguir = ()=> irA(rec.ir || siguienteDe(t));
+    if(t.examen){
+      /* Examen: la recompensa se lee en pantalla, nunca con voz; unos segundos y sigue. */
+      detenerNarracion();
+      setTimeout(seguir, rec.texto ? 4000 : 0);
+      return;
+    }
+    reproducir(rec);
     if(rec.audio || rec.texto) alTerminarAudio(seguir); else seguir();
     if(!rec.audio && !("speechSynthesis" in window)) seguir();
   } else irA(siguienteDe(t));
