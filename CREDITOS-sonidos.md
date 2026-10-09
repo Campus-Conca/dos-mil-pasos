@@ -53,7 +53,7 @@ Sin usar: 192612 chain_rustle (sgossner, CC BY 4.0, dura un segundo); 168717 woo
 
 | Clip | Capas | Fuentes | Licencias |
 |---|---|---|---|
-| ambiente-foro (t02) | pasos de la rambla (240–288 s) + plaza con niños lejos (181454, 0–36 s, filtrada) + discusión en italiano cerca (182860, 54–89 s) | 351782 (tim.kahn) · 181454 kids singing in Bologna square (rhonturn) · 182860 (manicciola) | **CC BY-NC 4.0** · **CC BY 4.0** · **CC BY 4.0** |
+| ambiente-foro (t02) | pasos de la rambla (240–288 s) + plaza con niños lejos (181454, 0–36 s, filtrada) + discusión en italiano cerca (182860, 54–89 s) | 351782 (tim.kahn) · 181454 kids singing in Bologna square (rhonturn) · 182860 (manicciola) | **CC BY-NC 4.0** · **CC BY-NC 3.0** · **CC BY 4.0** |
 | ambiente-chimenea (t07, cambio a 1252) | fuego de chimenea (10–56 s) + páginas | 18766 chimney-fire (reinsamba) · 164806 (exterminat) | **CC BY 4.0** · CC0 |
 
 El italiano hace de latín hablado en el foro de t02 (los hijos de Lucio); la playa de t01 se queda solo con mar y madera para que las voces sorprendan en la segunda parada. El murmullo 333415 ya no se usa en t02 (sigue en corral y público). Receta en `lib.py` del scratchpad `audio3`.
@@ -100,3 +100,5 @@ Eduardo probó la 37 y el ambiente distraía. Ajustes: (1) el motor gana una **a
 Novena pasada (8 de octubre): antesala de 6 s (10–14 s con entrada), ambiente al 12 % bajo la voz, y una sola pasada de página por vuelta en escritorio, monasterio y sala.
 
 Décima pasada (8 de octubre): en la sala de la Academia (t11) el reloj molestaba; ahora la cama es la chimenea 549208 baja y el reloj solo asoma 10 s por vuelta con fundidos, más una página y un trazo.
+
+Corrección (9 de octubre de 2026): 181454 (rhonturn) es CC BY-NC 3.0, no CC BY 4.0; verificado en Freesound. 182860 (Manicciola) y 18766 (reinsamba) son CC BY 4.0. La pantalla de cierre lista ahora todos los autores en uso.

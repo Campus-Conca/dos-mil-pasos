@@ -304,6 +304,9 @@ async function cargarContenido(){
   $("instr-lista").innerHTML = (R.instrucciones||[]).map(t =>
     `<li><span class="punto"></span><span>${t}</span></li>`).join("");
   if(R.motorDefault) $("sel-motor").value = R.motorDefault;
+  /* motorFijo: el modo de avance no se elige (p. ej. con encadenar, donde las paradas avanzan
+     solas y los pasos solo mueven el contador); se oculta el selector. */
+  if(R.motorFijo){ $("sel-motor").value = R.motorFijo; $("sel-motor").closest(".config-fila").classList.add("oculto"); }
   dibujarRio($("p-rio"), 0);
   dibujarRio($("c-rio"), 0);
 }
@@ -481,8 +484,39 @@ if("serviceWorker" in navigator){
 /* iPhone: el permiso del sensor y el desbloqueo del audio tienen que pedirse
    DENTRO del toque, antes de cualquier await; si no, Safari los ignora. */
 let permisoMovimiento = null;
+/* iPhone ignora HTMLMediaElement.volume (queda en 1): el ambiente sonaba al tope y la voz
+   abajo. Solo cuando el volumen está bloqueado, los elementos que no son la voz pasan por un
+   GainNode, y la voz va directa (sin el panner, que le restaba 3 dB y que iOS calla con la
+   pantalla bloqueada). En Android nada de esto se activa: el volumen funciona. */
+const volumenBloqueado = (()=>{
+  try{ if(/[?&]probar-ios\b/.test(location.search)) return true; }catch(e){}
+  try{ return document.createElement("audio").matches(":volume-locked"); }
+  catch(e){ return /iPhone|iPod/.test(navigator.userAgent || ""); }
+})();
+let compensaVoz = 1;     // la voz directa suena √2 más fuerte que por el panner: se compensa en el resto
+function enrutarSiBloqueado(el){
+  if(!volumenBloqueado || !el || el._gan || !ctx) return;
+  try{
+    const f = ctx.createMediaElementSource(el), g = ctx.createGain();
+    g.gain.value = 0; f.connect(g); g.connect(ctx.destination);
+    el._gan = g;
+  }catch(e){}
+}
+/* Nivel de un elemento: por GainNode si está enrutado (iPhone), por .volume si no (Android). */
+function ponerNivel(el, v){
+  if(!el) return;
+  v = Math.min(1, Math.max(0, v));
+  if(el._gan){
+    if(el._fundido){ clearInterval(el._fundido); el._fundido = null; }
+    const g = el._gan.gain; g.cancelScheduledValues(ctx.currentTime); g.setValueAtTime(v * compensaVoz, ctx.currentTime);
+  } else el.volume = v;
+}
 const SILENCIO = "data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAIA+AAACABAAZGF0YQAAAAA=";
 function desbloquearAudio(){
+  /* Safari: declarar la página como reproductor ("playback") antes de crear el AudioContext y del primer play(): el
+     audio que pasa por Web Audio sigue sonando con la pantalla bloqueada y con el switch de
+     silencio. La API no existe en Chrome, así que en Android no cambia nada. */
+  try{ if(navigator.audioSession && navigator.audioSession.type !== "playback") navigator.audioSession.type = "playback"; }catch(e){}
   try{
     if(!ctx){
       ctx = new (window.AudioContext||window.webkitAudioContext)();
@@ -496,6 +530,11 @@ function desbloquearAudio(){
   if(!ambElemento){ ambElemento = new Audio(); ambElemento.loop = true; ambElemento.src = SILENCIO; ambElemento.play().catch(()=>{}); }
   if(!ticElemento){ ticElemento = new Audio(); ticElemento.src = SILENCIO; ticElemento.play().catch(()=>{}); }
   if(!fondoElemento){ fondoElemento = new Audio(); fondoElemento.loop = true; fondoElemento.src = SILENCIO; fondoElemento.play().catch(()=>{}); }
+  if(volumenBloqueado){
+    /* Si la voz ya quedó atada al panner (sesión anterior con "un oído"), suena −3 dB como en Android: sin compensar. */
+    compensaVoz = (narrFuente || ($("chk-unoido") && $("chk-unoido").checked)) ? 1 : Math.SQRT2;
+    [ambElemento, ticElemento, fondoElemento].forEach(enrutarSiBloqueado);
+  }
 }
 $("btn-iniciar").addEventListener("click", async ()=>{
   estado.motor = $("sel-motor").value;
@@ -526,11 +565,14 @@ async function pedirWakeLock(){
   try{
     if("wakeLock" in navigator){
       estado.wakeLock = await navigator.wakeLock.request("screen");
-      document.addEventListener("visibilitychange", async ()=>{
-        if(document.visibilityState==="visible"){
-          try{ estado.wakeLock = await navigator.wakeLock.request("screen"); }catch(e){}
-        }
-      });
+      if(!pedirWakeLock._escucha){
+        pedirWakeLock._escucha = true;
+        document.addEventListener("visibilitychange", async ()=>{
+          if(document.visibilityState==="visible" && $("caminata").classList.contains("activa")){
+            try{ estado.wakeLock = await navigator.wakeLock.request("screen"); }catch(e){}
+          }
+        });
+      }
     }
   }catch(e){}
 }
@@ -560,6 +602,7 @@ function motorPasos(){
   if(typeof DeviceMotionEvent !== "undefined" && DeviceMotionEvent.requestPermission){
     (permisoMovimiento || DeviceMotionEvent.requestPermission().catch(()=> "denied")).then(r=>{
       if(r==="granted") activar();
+      else if(encadenarActivo()) aviso("Sin permiso del sensor: el recorrido avanza solo y el año salta con cada historia");
       else $("c-tramo-texto").textContent = "El sensor de pasos no dio permiso. Sal del recorrido y vuelve a entrar aceptando el permiso, o cambia a modo manual.";
     });
   } else activar();
@@ -606,6 +649,17 @@ let ultimoMovimiento = Date.now();
    default 0.8), solo si venía caminando o había una historia sonando. Si se pasa de
    la parada, la sincronía del contador lo corrige al presentarla. */
 let ocultoDesde = null;
+/* iOS puede dejar el AudioContext "interrupted" o "suspended" al bloquear: al volver, se reanuda.
+   Donde ya corre (Android), resume() no hace nada. */
+document.addEventListener("visibilitychange", ()=>{
+  if(document.visibilityState === "visible" && ctx && ctx.state !== "running" && ctx.state !== "closed"){
+    try{ ctx.resume().catch(()=>{}); }catch(e){}
+  }
+  if(document.visibilityState === "visible" && encadenarAlVolver){
+    encadenarAlVolver = false;
+    if(!narracionActiva()) programarEncadenado();   // la pausa le da tiempo al resume()
+  }
+});
 document.addEventListener("visibilitychange", ()=>{
   const cfg = (R && R.pasosOcultos) || {};
   if(cfg.activo === false) return;
@@ -640,10 +694,35 @@ function avanzar(m){
     if(narracionActiva()) estado.enCola = t; else presentar(t);
   }
 }
+/* Encadenado (R.encadenar = {activo, pausa}): al terminar una voz, el ambiente queda solo
+   `pausa` segundos y luego entra la parada que sigue, aunque no se haya caminado su
+   distancia; el contador salta a su año. Sin encadenar, la parada siguiente espera a que
+   los pasos lleguen (comportamiento clásico). La pausa usa audio: corre con la pantalla apagada. */
+function encadenarActivo(){ return !!(R && R.encadenar && R.encadenar.activo !== false); }
+function siguienteListo(){
+  if(estado.enCola) return estado.enCola;
+  if(encadenarActivo() && estado.pendiente && estado.actual && !estado.actual.examen && !estado.bloqueado) return estado.pendiente;
+  return null;
+}
 function terminoNarracion(){
   subirAmbiente();
   if(alTerminarCb){ const cb = alTerminarCb; alTerminarCb = null; cb(); return; }
-  if(estado.enCola){ const t = estado.enCola; estado.enCola = null; presentar(t); }
+  programarEncadenado();
+}
+function programarEncadenado(){
+  if(!siguienteListo()) return;
+  /* iPhone viejo (sin sesión "playback" efectiva) con "un oído": con la pantalla bloqueada el
+     AudioContext queda interrumpido y la voz, que va por el panner, no se oye. No encadenar a
+     ciegas: se retoma al volver la pantalla. */
+  if(volumenBloqueado && narrFuente && document.hidden && ctx && ctx.state !== "running"){ encadenarAlVolver = true; return; }
+  const pausa = encadenarActivo() ? (R.encadenar.pausa ?? 3) : 0;
+  esperarConAudio(pausa, ()=>{
+    const t = siguienteListo();               // se vuelve a mirar: pudo cambiar durante la pausa
+    if(!t) return;
+    if(t === estado.enCola) estado.enCola = null;
+    if(t === estado.pendiente) estado.pendiente = null;
+    presentar(t);
+  });
 }
 function refrescar(){
   $("c-metros").textContent = Math.round(estado.metros);
@@ -704,7 +783,8 @@ function sonarTic(){
     try{
       if(!ticElemento){ ticElemento = new Audio(); ticElemento.preload = "auto"; }
       if(!ticElemento.src || ticElemento.src.indexOf(ta) < 0){ ticElemento.src = ta; }
-      ticElemento.volume = (R.cronologia.ticVolumen != null) ? R.cronologia.ticVolumen : 0.5;
+      enrutarSiBloqueado(ticElemento);
+      ponerNivel(ticElemento, (R.cronologia.ticVolumen != null) ? R.cronologia.ticVolumen : 0.5);
       ticElemento.currentTime = 0; ticElemento.play().catch(()=>{});
       return;
     }catch(e){}
@@ -725,34 +805,53 @@ function sonarTic(){
    entre la voz. Config: ambienteNivel.antesala (global) o tramo.antesala (segundos). */
 let antesalaTimer = null, antesalaRestante = 0;
 const SILENCIO_1S = "data:audio/wav;base64,UklGRmQfAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YUAfAACAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgA==";
-function cancelarAntesala(){ if(antesalaTimer){ clearTimeout(antesalaTimer); antesalaTimer = null; } antesalaRestante = 0; }
+/* Espera con sonido: un segundo de silencio reproducido N veces en el elemento de la
+   narración y encadenado por `ended`. Con la pantalla apagada el teléfono congela o
+   frena los temporizadores de JavaScript, pero los eventos de audio siguen llegando.
+   Sirve a la antesala (antes de la voz) y a la pausa entre paradas (después de la voz). */
+let esperaCb = null, esperaId = 0, encadenarAlVolver = false;
+/* esperaId: cada cancelación lo incrementa. Un play() de silencio rechazado tarde (Siguiente o
+   Repetir caen mientras el clip carga) o un evento de una espera ya cancelada no hace nada:
+   antes se comía el callback de la espera nueva y borraba el onended de la voz siguiente. */
+function cancelarAntesala(){
+  if(antesalaTimer){ clearTimeout(antesalaTimer); antesalaTimer = null; }
+  antesalaRestante = 0; esperaCb = null; esperaId++;
+}
+function esperarConAudio(seg, cb){
+  cancelarAntesala();
+  if(!(seg > 0)){ cb(); return; }
+  const id = esperaId;
+  esperaCb = cb;
+  const fin = ()=>{
+    if(id !== esperaId) return;
+    esperaId++;                                   // los avisos tardíos de esta misma espera también quedan viejos
+    const f = esperaCb; esperaCb = null; antesalaRestante = 0;
+    if(narrElemento){ narrElemento.onended = null; narrElemento.onerror = null; }
+    if(f) f();
+  };
+  if(!narrElemento){ antesalaTimer = setTimeout(()=>{ antesalaTimer = null; fin(); }, seg * 1000); return; }
+  antesalaRestante = Math.max(1, Math.round(seg));
+  const paso = ()=>{
+    if(id !== esperaId || !esperaCb) return;      // se canceló (Siguiente, Repetir, salir)
+    if(antesalaRestante <= 0){ fin(); return; }
+    antesalaRestante--;
+    narrElemento.onended = paso;
+    narrElemento.onerror = fin;
+    narrElemento.ontimeupdate = null;
+    narrElemento.src = SILENCIO_1S;
+    narrElemento.play().catch(fin);
+  };
+  paso();
+}
 function iniciarConAntesala(t){
   const c = (R && R.ambienteNivel) || {};
   const seg = (t.antesala != null) ? t.antesala : (c.antesala || 0);
   detenerNarracion();
-  if(seg <= 0){ reproducir(t); return; }
-  subirAmbiente();
-  if(!t.audio || !narrElemento){
-    antesalaTimer = setTimeout(()=>{ antesalaTimer = null; reproducir(t); }, seg * 1000);
-    return;
-  }
-  /* Con audio grabado la espera se hace con sonido: un segundo de silencio reproducido
-     N veces y encadenado por `ended`. Con la pantalla apagada el teléfono congela los
-     temporizadores de JavaScript, pero los eventos de audio siguen llegando. */
-  antesalaRestante = Math.max(1, Math.round(seg));
-  const paso = ()=>{
-    if(antesalaRestante <= 0){ narrElemento.onended = null; reproducir(t); return; }
-    antesalaRestante--;
-    narrElemento.onended = paso;
-    narrElemento.onerror = ()=>{ narrElemento.onended = null; antesalaRestante = 0; reproducir(t); };
-    narrElemento.ontimeupdate = null;
-    narrElemento.src = SILENCIO_1S;
-    narrElemento.play().catch(()=>{ narrElemento.onended = null; antesalaRestante = 0; reproducir(t); });
-  };
-  paso();
+  if(seg > 0) subirAmbiente();
+  esperarConAudio(seg, ()=> reproducir(t));
 }
 function narracionActiva(){
-  if(antesalaTimer || antesalaRestante > 0) return true;   // la parada ya empezó aunque la voz aún no entre
+  if(antesalaTimer || antesalaRestante > 0 || esperaCb) return true;   // antesala o pausa en curso
   if(narrElemento && narrElemento.src && narrElemento.src !== SILENCIO && !narrElemento.paused && !narrElemento.ended) return true;
   if("speechSynthesis" in window && (speechSynthesis.speaking || speechSynthesis.pending)) return true;
   return false;
@@ -770,6 +869,9 @@ function irA(id){
     estado.pendiente = t;
     estado.objetivoMetros = estado.metros + espera;
     t._objetivo = estado.objetivoMetros;
+    /* Si ya no hay voz sonando (recompensa terminada, opción elegida, QR sin revelación), el
+       encadenado no lo programaría nadie: se programa aquí. */
+    if(encadenarActivo() && !narracionActiva()) programarEncadenado();
   } else if(narracionActiva()){
     t._objetivo = estado.metros;
     /* Un tramo inmediato espera a que termine la voz del anterior (antes la cortaba:
@@ -796,7 +898,7 @@ function ponerTexto(el, txt){
     : esc.replace(/\n/g,"<br>");
 }
 function presentar(t){
-  estado.actual = t; estado.enCola = null;
+  estado.actual = t; estado.enCola = null; encadenarAlVolver = false;
   /* Sincronía del contador: la historia arranca en SU año. Si el caminante se pasó
      (o saltó con Siguiente), los metros vuelven al punto donde se dispara este tramo. */
   if(typeof t._objetivo === "number" && Math.abs(estado.metros - t._objetivo) > 0.01){
@@ -810,6 +912,7 @@ function presentar(t){
   $("c-tramo-num").textContent = t.etiqueta || `Momento ${estado.recorridos}`;
   $("c-tramo-titulo").textContent = t.titulo || "";
   ponerTexto($("c-tramo-texto"), t.texto);
+  pantallaBloqueo(t);
   ponerImagen(t.imagen, t.imagenPie);
   ambientar(t.ambiente);
   /* Examen en silencio total: sin voz, sin ambiente y sin el fondo sintetizado. */
@@ -846,6 +949,24 @@ function presentar(t){
   } else {
     irA(siguienteDe(t));                        // --- flujo normal ---
   }
+}
+/* Controles de la pantalla de bloqueo: título de la parada y botón "siguiente", respaldo
+   manual si algún teléfono no encadena solo con la pantalla apagada. */
+function pantallaBloqueo(t){
+  if(!("mediaSession" in navigator)) return;
+  try{
+    navigator.mediaSession.metadata = new MediaMetadata({
+      title: t.titulo || t.etiqueta || "", artist: t.etiqueta || "", album: (R && R.titulo) || ""
+    });
+    if(!pantallaBloqueo._listo){
+      pantallaBloqueo._listo = true;
+      navigator.mediaSession.setActionHandler("nexttrack", ()=>{
+        const c = $("caminata");
+        if(!c.classList.contains("activa") || c.classList.contains("modo-examen")) return;   // en el examen no hay Siguiente
+        $("btn-siguiente").click();
+      });
+    }
+  }catch(e){}
 }
 function ponerImagen(src, pie){
   const img = $("c-imagen"), cap = $("c-imagen-pie");
@@ -899,7 +1020,7 @@ function limpiarSesion(){
 }
 function salirDelRecorrido(){
   limpiarSesion();
-  estado.metros=0; estado.recorridos=0; estado.actual=null; estado.pendiente=null; estado.enCola=null;
+  estado.metros=0; estado.recorridos=0; estado.actual=null; estado.pendiente=null; estado.enCola=null; encadenarAlVolver=false;
   estado.bloqueado=false; estado.enPausa=false;
   $("c-pausa").classList.remove("visible");
   $("btn-siguiente").classList.add("oculto");
@@ -1082,7 +1203,7 @@ function mostrarContraste(t, ok, escrito){
   ponerTexto($("c-tramo-texto"), "Escribiste: «" + escrito + "»\n\nLa respuesta: " + solucion);
   if(ok && rec.objeto) ganarObjeto(rec.objeto);
   detenerNarracion();
-  const seguir = ()=> irA(rec.ir || siguienteDe(t));
+  const seguir = ()=>{ if(estado.actual === t) irA(rec.ir || siguienteDe(t)); };
   setTimeout(seguir, (e.segundosContraste || 8) * 1000);
 }
 function resolverEnigma(t, saltado){
@@ -1100,7 +1221,7 @@ function resolverEnigma(t, saltado){
     if(t.examen){
       /* Examen: la recompensa se lee en pantalla, nunca con voz; unos segundos y sigue. */
       detenerNarracion();
-      setTimeout(seguir, rec.texto ? 4000 : 0);
+      setTimeout(()=>{ if(estado.actual === t) seguir(); }, rec.texto ? 4000 : 0);
       return;
     }
     reproducir(rec);
@@ -1212,20 +1333,21 @@ function reproducir(t){
   if(t.audio){
     if(!narrElemento){ narrElemento = new Audio(); narrElemento.preload = "auto"; }
     try{
-      if(panEnv && !narrFuente){
+      if(panEnv && !narrFuente && !(volumenBloqueado && !estado.unOido)){
         narrFuente = ctx.createMediaElementSource(narrElemento);
         narrFuente.connect(panEnv);
       }
     }catch(e){}
     bajarAmbiente();
+    const yo = esperaId;                        // detenerNarracion acaba de incrementarlo
     narrElemento.onended = terminoNarracion;
-    narrElemento.onerror = ()=> narrarTTS(t);   // respaldo si el archivo falla
+    narrElemento.onerror = ()=>{ if(yo === esperaId) narrarTTS(t); };   // respaldo si el archivo falla
     /* t.cambios: [{en: segundos, ambiente: "nombre"}] cambia el ambiente a mitad de la
        narración, donde la historia cambia de escenario. Solo con audio grabado. */
     cambiosHechos = new Set();
     narrElemento.ontimeupdate = ()=> aplicarCambios(t, narrElemento.currentTime);
     narrElemento.src = t.audio;
-    narrElemento.play().catch(()=> narrarTTS(t));
+    narrElemento.play().catch(()=>{ if(yo === esperaId) narrarTTS(t); });
   } else narrarTTS(t);
 }
 let cambiosHechos = new Set();
@@ -1259,11 +1381,11 @@ function nivAmb(){ const c = (R && R.ambienteNivel) || {}; return { bajo: (c.baj
 function bajarAmbiente(){ if(ambNodo) ambNodo.gain.gain.setTargetAtTime(0.05, ctx.currentTime, 0.4);
   if(ambElemento) desvanecerVolumen(ambElemento, nivAmb().bajo, 1500);
   if(fondoNodos) fondoNodos.master.gain.setTargetAtTime(fondoBase*fondoDuck, ctx.currentTime, 0.5);
-  if(fondoElemento) fondoElemento.volume = Math.min(1, fondoBase*fondoDuck); }
+  if(fondoElemento) ponerNivel(fondoElemento, fondoBase*fondoDuck); }
 function subirAmbiente(){ if(ambNodo) ambNodo.gain.gain.setTargetAtTime(0.18, ctx.currentTime, 1.2);
   if(ambElemento) desvanecerVolumen(ambElemento, nivAmb().alto, 1200);
   if(fondoNodos) fondoNodos.master.gain.setTargetAtTime(fondoBase, ctx.currentTime, 1.6);
-  if(fondoElemento) fondoElemento.volume = Math.min(1, fondoBase); }
+  if(fondoElemento) ponerNivel(fondoElemento, fondoBase); }
 
 /* --- Fondo armónico permanente: drone sintetizado o mp3 en loop ---
    Suena bajo TODA la caminata, más tenue durante la narración (ducking),
@@ -1281,7 +1403,8 @@ function iniciarFondo(){
     fondoBase = (typeof f.volumen === "number") ? f.volumen : 0.14;
     if(!fondoElemento){ fondoElemento = new Audio(); }
     fondoElemento.src = f.fuente;
-    fondoElemento.loop = true; fondoElemento.volume = 0;
+    enrutarSiBloqueado(fondoElemento);
+    fondoElemento.loop = true; ponerNivel(fondoElemento, 0);
     fondoElemento.play().then(()=> desvanecerVolumen(fondoElemento, fondoBase, 3500))
       .catch(()=>{ fondoElemento=null; fondoBase=0.055; fondoNodos = droneArmonico(f.tono || "calido", fondoBase); });
   }
@@ -1326,6 +1449,12 @@ function detenerFondo(){
 function desvanecerVolumen(el, objetivo, ms){
   if(!el) return;
   if(el._fundido){ clearInterval(el._fundido); el._fundido = null; }
+  if(el._gan){
+    const g = el._gan.gain, v = Math.min(1, Math.max(0, objetivo)) * compensaVoz;
+    g.cancelScheduledValues(ctx.currentTime); g.setValueAtTime(g.value, ctx.currentTime);
+    g.setTargetAtTime(v, ctx.currentTime, Math.max(0.05, ms / 3000));
+    return;
+  }
   const pasos = 30, dt = ms / pasos, delta = (objetivo - el.volume) / pasos;
   let n = 0;
   const it = setInterval(()=>{
@@ -1347,7 +1476,8 @@ function ambientar(nombre){
   else {
     if(!ambElemento){ ambElemento = new Audio(); ambElemento.loop = true; }
     ambElemento.loop = true;
-    ambElemento.volume = narracionActiva() ? nivAmb().bajo : nivAmb().alto;
+    enrutarSiBloqueado(ambElemento);
+    ponerNivel(ambElemento, narracionActiva() ? nivAmb().bajo : nivAmb().alto);
     ambElemento.src = def;
     ambElemento.play().catch(()=> ambienteSintetizado("rio"));
   }

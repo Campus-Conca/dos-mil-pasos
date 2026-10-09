@@ -130,10 +130,15 @@
     "duck": 0.3
   },
   "ui": {
-    "siguienteSegundos": 10
+    "siguienteSegundos": 1
+  },
+  "motorFijo": "pasos",
+  "encadenar": {
+    "activo": true,
+    "pausa": 3
   },
   "pasosOcultos": {
-    "activo": true,
+    "activo": false,
     "velocidad": 0.8,
     "maximoMetros": 400
   },
@@ -144,7 +149,7 @@
   },
   "instrucciones": [
     "Cada paso que das es un año. Diez pasos, una década; cien pasos, un siglo. Arriba verás el año en que vas.",
-    "Guarda el teléfono en la bolsa y camina despacio. Las historias llegan solas cuando cruzas cada época.",
+    "Guarda el teléfono en la bolsa y camina despacio; puedes apagar la pantalla. Las historias llegan solas, una tras otra. Si quieres adelantar, toca «Siguiente».",
     "Al final hay un examen de nueve preguntas. Cada acierto deja una ficha en tu morral: enséñaselo a tu profe.",
     "Son dos mil doscientos pasos, cerca de kilómetro y medio. Lleva agua."
   ],
@@ -842,7 +847,7 @@
   ],
   "cierre": {
     "titulo": "Caminaste dos mil años",
-    "texto": "Abajo están las palabras que recogiste, la ficha del orden y tus respuestas. Enséñaselo a tu profe desde esta pantalla. La lengua que caminaste sigue cambiando en tu boca. Sonidos de Freesound: xserra, Diegolar y taurindb (CC BY 4.0), exuberate (CC BY 3.0), tim.kahn (CC BY-NC 4.0) y grabaciones CC0 de aurelien.leveque, SanChago, nicotep, pillonoise, cvltiv8r, echobones, ciudadreptil, sinewave1kHz, itinerantmonk108, jayfrosting, OwennewO, exterminat, 9voltplasma y SoundsLikeFoley. Imágenes de Wikimedia Commons con su crédito en cada parada.",
+    "texto": "Abajo están las palabras que recogiste, la ficha del orden y tus respuestas. Enséñaselo a tu profe desde esta pantalla. La lengua que caminaste sigue cambiando en tu boca. Sonidos de Freesound. Con atribución: xserra, Diegolar, RTB45, Suso_Ramallo, Eelke, lakewoodsound, Manicciola y reinsamba (CC BY 4.0); exuberate (CC BY 3.0); tim.kahn y acclivity (CC BY-NC 4.0); rhonturn y AlfasolmegaMX (CC BY-NC 3.0). De dominio público (CC0): aurelien.leveque, SanChago, nicotep, pillonoise, cvltiv8r, JackMenhorn, echobones, ciudadreptil, sinewave1kHz, itinerantmonk108, jayfrosting, OwennewO, exterminat, 9voltplasma, SoundsLikeFoley, brktkrgll, G-14, blaukreuz, Snapper4298, rafiqizap, XiscoVar, soundsandrebounds y mycompasstv. Imágenes de Wikimedia Commons con su crédito en cada parada.",
     "enlaces": [
       {
         "texto": "Museo de Palabras · Campus Concá",
