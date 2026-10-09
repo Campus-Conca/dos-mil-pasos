@@ -601,6 +601,28 @@ $("btn-auto").addEventListener("click", ()=>{
    Disparos: distancia (metros desde el tramo anterior), QR y elección.
    ===================================================================== */
 let ultimoMovimiento = Date.now();
+/* Con la pantalla apagada el teléfono no entrega eventos de movimiento. Al volver,
+   se estima lo caminado en ese lapso a paso tranquilo (R.pasosOcultos.velocidad m/s,
+   default 0.8), solo si venía caminando o había una historia sonando. Si se pasa de
+   la parada, la sincronía del contador lo corrige al presentarla. */
+let ocultoDesde = null;
+document.addEventListener("visibilitychange", ()=>{
+  const cfg = (R && R.pasosOcultos) || {};
+  if(cfg.activo === false) return;
+  if(document.visibilityState === "hidden"){
+    ocultoDesde = { t: Date.now(), caminaba: (Date.now() - ultimoMovimiento) < 15000 || narracionActiva() };
+  } else if(ocultoDesde && estado.motor === "pasos" && $("caminata").classList.contains("activa") && !estado.bloqueado){
+    const seg = (Date.now() - ocultoDesde.t) / 1000;
+    if(ocultoDesde.caminaba && seg > 3){
+      const v = cfg.velocidad || 0.8;
+      let m = seg * v;
+      if(cfg.maximoMetros) m = Math.min(m, cfg.maximoMetros);
+      avanzar(m);
+      aviso("Pantalla apagada " + Math.round(seg) + " s: conté unos " + Math.round(m / ((R && R.longitudPasoMetros) || 0.7)) + " pasos");
+    }
+    ocultoDesde = null;
+  }
+});
 
 function avanzar(m){
   if(estado.bloqueado) return;
@@ -608,6 +630,9 @@ function avanzar(m){
   ultimoMovimiento = Date.now();
   if(estado.enPausa){ estado.enPausa=false; $("c-pausa").classList.remove("visible"); }
   refrescar();
+  /* Red de seguridad: si un tramo quedó en cola y la voz ya no suena (audio cortado
+     por el sistema sin avisar), el siguiente paso lo presenta. */
+  if(estado.enCola && !narracionActiva()){ const t = estado.enCola; estado.enCola = null; presentar(t); return; }
   if(estado.pendiente && estado.metros >= estado.objetivoMetros){
     const t = estado.pendiente; estado.pendiente = null;
     /* Si la voz todavía está hablando, el tramo alcanzado espera a que termine:
@@ -713,7 +738,9 @@ function irA(id){
   if(espera > 0){
     estado.pendiente = t;
     estado.objetivoMetros = estado.metros + espera;
+    t._objetivo = estado.objetivoMetros;
   } else if(narracionActiva()){
+    t._objetivo = estado.metros;
     /* Un tramo inmediato espera a que termine la voz del anterior (antes la cortaba:
        el último audio de un recorrido se perdía cuando lo seguía un examen). */
     estado.enCola = t;
@@ -739,6 +766,13 @@ function ponerTexto(el, txt){
 }
 function presentar(t){
   estado.actual = t; estado.enCola = null;
+  /* Sincronía del contador: la historia arranca en SU año. Si el caminante se pasó
+     (o saltó con Siguiente), los metros vuelven al punto donde se dispara este tramo. */
+  if(typeof t._objetivo === "number" && Math.abs(estado.metros - t._objetivo) > 0.01){
+    estado.metros = t._objetivo;
+    estado.ultimoTic = undefined;   // que el reajuste no suene como un siglo cruzado
+    refrescar();
+  }
   /* t.examen: pantalla de examen, sin narración ni botones de avance (solo el enigma). */
   $("caminata").classList.toggle("modo-examen", !!t.examen);
   estado.recorridos++;
@@ -807,7 +841,10 @@ $("btn-siguiente").addEventListener("click", ()=>{
   detenerNarracion();
   subirAmbiente();
   if(cb) cb();
+  else if(estado.enCola){ estado.pendiente = estado.enCola; estado.enCola = null; }
   else if(!estado.pendiente && estado.actual) irA(siguienteDe(estado.actual));
+  /* Siguiente es un salto manual: la parada que sigue se presenta ya y el contador
+     se pone en su año (presentar ajusta los metros a t._objetivo). */
   if(estado.pendiente){ const t = estado.pendiente; estado.pendiente = null; presentar(t); }
 });
 
