@@ -138,9 +138,9 @@
     "maximoMetros": 400
   },
   "ambienteNivel": {
-    "bajo": 0.16,
+    "bajo": 0.12,
     "alto": 0.5,
-    "antesala": 4
+    "antesala": 6
   },
   "instrucciones": [
     "Cada paso que das es un año. Diez pasos, una década; cien pasos, un siglo. Arriba verás el año en que vas.",
@@ -209,11 +209,11 @@
       },
       "cambios": [
         {
-          "en": 6.0,
+          "en": 4.0,
           "ambiente": "viento"
         }
       ],
-      "antesala": 8,
+      "antesala": 10,
       "imagen": "imagenes/t04.jpg",
       "imagenPie": "Corona votiva del rey godo Recesvinto, siglo VII. Foto: Emilio J. Rodríguez Posada, CC BY-SA 2.0, Wikimedia Commons"
     },
@@ -232,7 +232,7 @@
       },
       "cambios": [
         {
-          "en": 30.0,
+          "en": 26.0,
           "ambiente": "zoco"
         },
         {
@@ -240,7 +240,7 @@
           "ambiente": "canto"
         }
       ],
-      "antesala": 10,
+      "antesala": 14,
       "imagen": "imagenes/t05.jpg",
       "imagenPie": "Arcos de la Mezquita de Córdoba. Foto: Alvaro.vinuela.carnicero, CC BY-SA 4.0, Wikimedia Commons"
     },
@@ -257,7 +257,7 @@
         "nombre": "dueño",
         "texto": "Entró en mí hacia el año 1070"
       },
-      "antesala": 6,
+      "antesala": 8,
       "imagen": "imagenes/t06.jpg",
       "imagenPie": "Página 72 del códice de San Millán con la glosa «Cono aiutorio de nuestro dueno». Dominio público"
     },
@@ -320,7 +320,7 @@
       },
       "cambios": [
         {
-          "en": 8.0,
+          "en": 6.0,
           "ambiente": "mercado"
         },
         {
@@ -328,7 +328,7 @@
           "ambiente": "cigarras"
         }
       ],
-      "antesala": 8,
+      "antesala": 10,
       "imagen": "imagenes/t09.jpg",
       "imagenPie": "Malintzin interpreta entre Cortés y los señores tlaxcaltecas. Lienzo de Tlaxcala, c. 1585. Dominio público"
     },
@@ -351,7 +351,7 @@
           "ambiente": "barco"
         }
       ],
-      "antesala": 6,
+      "antesala": 8,
       "imagen": "imagenes/t10.jpg",
       "imagenPie": "Portada de la primera edición del Quijote, Madrid, 1605. Dominio público"
     },
