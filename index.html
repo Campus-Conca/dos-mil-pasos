@@ -1047,6 +1047,13 @@ function comprobarEnigma(t){
        se guarda en el morral aunque esté mal, para que el profe lo vea. */
     ok = val !== "" && buenas.some(b => e.contiene ? val.indexOf(norm(b)) > -1 : norm(b) === val);
     if(e.guardarRespuesta && val) ganarObjeto({ nombre: (e.etiquetaMorral || t.titulo) + (ok ? " ✓" : " ✗"), texto: $("e-input").value.trim() });
+    /* contrastar: true → no se bloquea al que contesta: lo escrito se acepta siempre y se
+       muestra junto a la solución (e.solucion o el texto de la recompensa) para compararlas. */
+    if(e.contrastar){
+      if(val === ""){ $("e-feedback").textContent = e.error || "Escribe tu respuesta antes de guardar."; return; }
+      mostrarContraste(t, ok, $("e-input").value.trim());
+      return;
+    }
   } else if(e.tipo === "abierta"){
     const val = ($("e-input") ? $("e-input").value : "").trim();
     ok = val.length >= (e.minimo || 1);
@@ -1065,6 +1072,18 @@ function comprobarEnigma(t){
     $("e-feedback").textContent = e.error || "Todavía no. Observa de nuevo el lugar.";
     if(e.tipo === "secuencia"){ enigmaSel = []; pintarChips(e); }
   }
+}
+function mostrarContraste(t, ok, escrito){
+  const e = t.enigma, rec = e.recompensa || {};
+  $("c-enigma").classList.add("oculto");
+  estado.bloqueado = false;
+  const solucion = e.solucion || rec.texto || "";
+  $("c-tramo-titulo").textContent = ok ? (e.tituloBien || "Bien") : (e.tituloContraste || "Compara");
+  ponerTexto($("c-tramo-texto"), "Escribiste: «" + escrito + "»\n\nLa respuesta: " + solucion);
+  if(ok && rec.objeto) ganarObjeto(rec.objeto);
+  detenerNarracion();
+  const seguir = ()=> irA(rec.ir || siguienteDe(t));
+  setTimeout(seguir, (e.segundosContraste || 8) * 1000);
 }
 function resolverEnigma(t, saltado){
   $("c-enigma").classList.add("oculto");
@@ -1189,6 +1208,7 @@ function alTerminarAudio(cb){ alTerminarCb = cb; }
 /* --- Narración: archivo si existe, TTS si no --- */
 function reproducir(t){
   detenerNarracion();
+  if(estado.actual && estado.actual.examen) return;   // examen: nunca voz
   if(t.audio){
     if(!narrElemento){ narrElemento = new Audio(); narrElemento.preload = "auto"; }
     try{

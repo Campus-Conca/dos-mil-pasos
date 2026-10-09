@@ -533,7 +533,7 @@
       "id": "e02",
       "etiqueta": "Examen · 2 de 8",
       "titulo": "El que trajo el latín",
-      "texto": "Pregunta 2 de 8. Contesta con tus palabras y guarda.",
+      "texto": "Pregunta 2 de 8. Contesta con tus palabras y guarda; luego verás tu respuesta junto a la de la Lengua.",
       "voz": "lengua",
       "metros": 0,
       "enigma": {
@@ -541,6 +541,9 @@
         "contiene": true,
         "larga": true,
         "guardarRespuesta": true,
+        "contrastar": true,
+        "solucion": "Lucio, el del pan. De esa boca saliste tú.",
+        "segundosContraste": 9,
         "pregunta": "¿Quién trajo el latín a Hispania en el año 218 antes de Cristo?",
         "respuesta": [
           "soldado",
@@ -575,7 +578,7 @@
       "id": "e03",
       "etiqueta": "Examen · 3 de 8",
       "titulo": "Ojalá",
-      "texto": "Pregunta 3 de 8. Contesta con tus palabras y guarda.",
+      "texto": "Pregunta 3 de 8. Contesta con tus palabras y guarda; luego verás tu respuesta junto a la de la Lengua.",
       "voz": "lengua",
       "metros": 0,
       "enigma": {
@@ -583,6 +586,9 @@
         "contiene": true,
         "larga": true,
         "guardarRespuesta": true,
+        "contrastar": true,
+        "solucion": "Law sha Allah. Ocho siglos no se olvidan.",
+        "segundosContraste": 9,
         "pregunta": "¿En qué lengua estás rezando cuando dices «ojalá»?",
         "respuesta": [
           "arabe",
@@ -617,7 +623,7 @@
       "id": "e04",
       "etiqueta": "Examen · 4 de 8",
       "titulo": "Las primeras frases",
-      "texto": "Pregunta 4 de 8. Contesta con tus palabras y guarda.",
+      "texto": "Pregunta 4 de 8. Contesta con tus palabras y guarda; luego verás tu respuesta junto a la de la Lengua.",
       "voz": "lengua",
       "metros": 0,
       "enigma": {
@@ -625,6 +631,9 @@
         "contiene": true,
         "larga": true,
         "guardarRespuesta": true,
+        "contrastar": true,
+        "solucion": "Mi acta de nacimiento es un acordeón.",
+        "segundosContraste": 9,
         "pregunta": "¿Quién escribió las primeras frases en algo que ya no era latín, y dónde?",
         "respuesta": [
           "monje",
@@ -660,7 +669,7 @@
       "id": "e05",
       "etiqueta": "Examen · 5 de 8",
       "titulo": "La primera palabra americana",
-      "texto": "Pregunta 5 de 8. Contesta con tus palabras y guarda.",
+      "texto": "Pregunta 5 de 8. Contesta con tus palabras y guarda; luego verás tu respuesta junto a la de la Lengua.",
       "voz": "lengua",
       "metros": 0,
       "enigma": {
@@ -668,6 +677,9 @@
         "contiene": true,
         "larga": true,
         "guardarRespuesta": true,
+        "contrastar": true,
+        "solucion": "Canoa, octubre de 1492. Tres años después, en el diccionario.",
+        "segundosContraste": 9,
         "pregunta": "¿Cuál fue la primera palabra americana que entró al español?",
         "respuesta": [
           "canoa"
@@ -697,7 +709,7 @@
       "id": "e06",
       "etiqueta": "Examen · 6 de 8",
       "titulo": "La equis de México",
-      "texto": "Pregunta 6 de 8. Contesta con tus palabras y guarda.",
+      "texto": "Pregunta 6 de 8. Contesta con tus palabras y guarda; luego verás tu respuesta junto a la de la Lengua.",
       "voz": "lengua",
       "metros": 0,
       "enigma": {
@@ -705,6 +717,9 @@
         "contiene": true,
         "larga": true,
         "guardarRespuesta": true,
+        "contrastar": true,
+        "solucion": "Una foto de 1521 que nadie quiso borrar.",
+        "segundosContraste": 9,
         "pregunta": "¿Por qué México se escribe con x pero suena con jota?",
         "respuesta": [
           "sh",
@@ -742,7 +757,7 @@
       "id": "e07",
       "etiqueta": "Examen · 7 de 8",
       "titulo": "Casa y caza",
-      "texto": "Pregunta 7 de 8. Contesta con tus palabras y guarda.",
+      "texto": "Pregunta 7 de 8. Contesta con tus palabras y guarda; luego verás tu respuesta junto a la de la Lengua.",
       "voz": "lengua",
       "metros": 0,
       "enigma": {
@@ -750,6 +765,9 @@
         "contiene": true,
         "larga": true,
         "guardarRespuesta": true,
+        "contrastar": true,
+        "solucion": "La zeta de España nunca se embarcó. América aprendió a hablar como sevillanas.",
+        "segundosContraste": 9,
         "pregunta": "¿Por qué tú dices casa y caza igual y un madrileño no?",
         "respuesta": [
           "sevilla",
@@ -784,7 +802,7 @@
       "id": "e08",
       "etiqueta": "Examen · 8 de 8",
       "titulo": "El latín de ahora",
-      "texto": "Pregunta 8 de 8. Contesta con tus palabras y guarda.",
+      "texto": "Pregunta 8 de 8. Contesta con tus palabras y guarda; luego verás tu respuesta junto a la de la Lengua.",
       "voz": "lengua",
       "metros": 0,
       "enigma": {
@@ -792,6 +810,9 @@
         "contiene": true,
         "larga": true,
         "guardarRespuesta": true,
+        "contrastar": true,
+        "solucion": "El inglés. Nadie te obliga; nada más resulta que las cosas están en inglés.",
+        "segundosContraste": 9,
         "pregunta": "¿Qué lengua es «el latín de ahora» y por qué?",
         "respuesta": [
           "ingl"
