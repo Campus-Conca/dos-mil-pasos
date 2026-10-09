@@ -78,3 +78,13 @@ Tres paradas abren con una **entrada** breve (un archivo de 20–24 s que se apa
 | ambiente-escuela | t13 (1970) | patio de escuela en Oaxaca + patio lejano | 213350 School children playing (mycompasstv) 25–75 s · 34056 SchoolPlayground (acclivity) 50–100 s | CC0 · **CC BY-NC 4.0** |
 
 Retirados: ambiente-tlatelolco (tambores taurindb), ambiente-pueblo-quieto, ambiente-publico. Las cigarras quedan solo en la sierra (t09 y t13); el murmullo 333415 sigue en corral y proyector; el mercado de Leipzig solo en t07. Sin usar: 266652 (segunda pieza marroquí, por no encimar dos músicas con el canto de la jarcha). Receta: `lib.py` y el script de la quinta pasada en el scratchpad `audio3`.
+
+## Sexta pasada (8 de octubre de 2026): que brille la parada árabe
+
+| Clip | Capas | Fuentes | Licencias |
+|---|---|---|---|
+| ambiente-adhan (t05 entrada, 40 s → zoco) | el pasaje más fuerte del llamado (9–48 s), apenas filtrado, a −17 dB | 705292 (RTB45) | **CC BY 4.0** |
+| ambiente-zoco (t05) | Jamaa el Fna en su tramo más vivo (0–60 s) + la canción corta entera, cantada, al frente; −18 dB | 520234 (blaukreuz) · 266652 (Eelke) 2–36 s | CC0 · **CC BY 4.0** |
+| ambiente-canto (t05, la jarcha) | canto de boda de Tánger en su pasaje más firme (60–115 s) + plaza muy al fondo; −18 dB | 140143 (xserra) · 520234 | **CC BY 4.0** · CC0 |
+
+Los tres van 4–5 dB por encima del resto de camas (−22 dB) para que la sección se oiga aun bajo la voz.
