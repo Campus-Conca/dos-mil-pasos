@@ -92,3 +92,7 @@ Los tres van 4–5 dB por encima del resto de camas (−22 dB) para que la secci
 ## Séptima pasada (8 de octubre de 2026): presencia en todas las paradas
 
 Dos ajustes. (1) El motor bajaba el ambiente a 12 % del volumen mientras hablaba la voz; ahora el recorrido fija `ambienteNivel` en 25 % bajo la voz y 60 % entre paradas. (2) Las once camas con sonido de firma se remezclaron con esa capa al frente y a −18/−20 dB: el canto gregoriano sin filtro de distancia, el laúd del corral, el huéhuetl del mercado, las voces en italiano del foro, la pluma, el reloj, el proyector, el patio, las gaviotas y las dos entradas (marcha, caracol). Las camas de paisaje (mar, godos, plaza, imprenta, barco, cigarras, campanas, radio, tianguis, pantalla, pueblo, chimenea, gabinete) siguen a −22 dB y suben solo por el motor.
+
+## Octava pasada (8 de octubre de 2026): balance
+
+Eduardo probó la 37 y el ambiente distraía. Ajustes: (1) el motor gana una **antesala**: cada parada arranca con 4 s de ambiente solo (8–10 s donde hay entrada musical: godos, adhan, caracol; 6 s en monasterio y corral) y luego entra la voz con el ambiente al 16 % (antes 25 %), con fundidos de 1.5 s; entre paradas, 50 %. (2) La pluma continua cansaba: en escritorio vuelven las páginas con dos trazos de pluma por vuelta, en la sala un trazo, y el monasterio queda sin pluma.
