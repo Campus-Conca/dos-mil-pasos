@@ -53,8 +53,7 @@ Sin usar: 192612 chain_rustle (sgossner, CC BY 4.0, dura un segundo); 168717 woo
 
 | Clip | Capas | Fuentes | Licencias |
 |---|---|---|---|
-| ambiente-mar (t01) | olas + madera (mezcla anterior) + discusión en italiano lejana, filtrada tras las olas (33–73 s) | 803679 · 168717 · 182860 political_discussion.it (manicciola) | CC0 · CC0 · **CC BY 4.0** |
 | ambiente-foro (t02) | pasos de la rambla (240–288 s) + plaza con niños lejos (181454, 0–36 s, filtrada) + discusión en italiano cerca (182860, 54–89 s) | 351782 (tim.kahn) · 181454 kids singing in Bologna square (rhonturn) · 182860 (manicciola) | **CC BY-NC 4.0** · **CC BY 4.0** · **CC BY 4.0** |
 | ambiente-chimenea (t07, cambio a 1252) | fuego de chimenea (10–56 s) + páginas | 18766 chimney-fire (reinsamba) · 164806 (exterminat) | **CC BY 4.0** · CC0 |
 
-El italiano hace de latín hablado en el mundo de Lucio: lejos en la playa de t01, de cerca en el foro de t02. El murmullo 333415 ya no se usa en t02 (sigue en corral y público). Receta en `lib.py` del scratchpad `audio3`.
+El italiano hace de latín hablado en el foro de t02 (los hijos de Lucio); la playa de t01 se queda solo con mar y madera para que las voces sorprendan en la segunda parada. El murmullo 333415 ya no se usa en t02 (sigue en corral y público). Receta en `lib.py` del scratchpad `audio3`.

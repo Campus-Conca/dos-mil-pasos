@@ -1,5 +1,5 @@
 /* Sendero Narrado v2 — service worker con precacheo de audios e imágenes */
-const CACHE = "sendero-v31";
+const CACHE = "sendero-v32";
 const BASE = [
   "./", "./index.html", "./recorrido.json", "./manifest.webmanifest",
   "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Instrument+Sans:wght@400;500;600&display=swap"
