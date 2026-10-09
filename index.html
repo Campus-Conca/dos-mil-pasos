@@ -812,7 +812,9 @@ function presentar(t){
   ponerTexto($("c-tramo-texto"), t.texto);
   ponerImagen(t.imagen, t.imagenPie);
   ambientar(t.ambiente);
-  if(t.examen){ detenerNarracion(); bajarAmbiente(); } else iniciarConAntesala(t);
+  /* Examen en silencio total: sin voz, sin ambiente y sin el fondo sintetizado. */
+  if(t.examen){ detenerNarracion(); detenerAmbiente(); detenerFondo(); }
+  else { if(R.fondo && R.fondo.activo !== false && !fondoNodos && !fondoElemento) iniciarFondo(); iniciarConAntesala(t); }
   $("c-opciones").classList.add("oculto");
   $("c-enigma").classList.add("oculto");
   $("btn-escanear").classList.add("oculto");
