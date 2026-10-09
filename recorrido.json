@@ -106,12 +106,17 @@
     "campanas": "audios/ambiente-campanas.mp3",
     "canto": "audios/ambiente-canto.mp3",
     "publico": "audios/ambiente-publico.mp3",
-    "mercado": "audios/ambiente-tlatelolco.mp3",
+    "mercado": "audios/ambiente-mercado.mp3",
+    "caracol": "audios/ambiente-caracol.mp3",
+    "adhan": "audios/ambiente-adhan.mp3",
+    "marcha": "audios/ambiente-marcha.mp3",
+    "proyector": "audios/ambiente-proyector.mp3",
+    "puerto-colon": "audios/ambiente-puerto-colon.mp3",
     "corral": "audios/ambiente-corral.mp3",
-    "sala": "audios/ambiente-gabinete.mp3",
+    "sala": "audios/ambiente-sala.mp3",
     "chimenea": "audios/ambiente-chimenea.mp3",
     "radio": "audios/ambiente-radio.mp3",
-    "escuela": "audios/ambiente-pueblo-quieto.mp3",
+    "escuela": "audios/ambiente-escuela.mp3",
     "cocina": "audios/ambiente-tianguis.mp3",
     "teclado": "audios/ambiente-pantalla.mp3",
     "silencio": "audios/ambiente-pueblo.mp3"
@@ -190,12 +195,18 @@
       "texto": "Piensa en el apellido de tu mamá, o en el de tu papá. Si termina en ez, Hernández, Martínez, González, Rodríguez, lo que viene ahora es tu historia familiar, aunque nunca hayas salido de Querétaro.\n\nEs el año 409 y el imperio romano se cae a pedazos. Por los Pirineos, que ya nadie vigila, entran suevos, vándalos y godos que reinaron en Hispania por 300 años. Los romanos les decían bárbaros a todos los que no hablaban latín, por el ruido que hacían al hablar: bar-bar. Un insulto por onomatopeya, como decirle a alguien «el bla-bla».\n\nCon tres siglos de godos mandando podrías pensar que me volví una lengua medio germana. En realidad no. Esos conquistadores eran pocos frente a millones de hispanorromanos y acabaron hablando mi latín en dos generaciones. Pero una gente que vive de la guerra deja las palabras de la guerra: guerra, guardar, robar, espía, yelmo, tregua, bandido. Y ropa, que al principio quería decir botín, lo que te quitaban después de robarte; por eso ropa y robar son parientes. Lo de guerra tiene su chiste: en latín ya existía bellum, pero bellum se parecía demasiado a bellus, bonito, y a nadie le gusta decir que va a una guerra bonita. Tomé la palabra germánica por pudor.\n\nOtra cosa que me dejaron como herencia fueron los nombres, y ahí entra tu apellido. Rodrigo es Hrodric: gloria y poder. Fernando, paz y audacia. Alfonso, Gonzalo, Álvaro, Ramiro. De esos nombres salieron los apellidos con ez al final, que quiere decir hijo de: Rodríguez, hijo de Rodrigo; Fernández, hijo de Fernando; González, hijo de Gonzalo. Si tu familia es Hernández desde que hay memoria, en algún punto hubo un Hernando, y antes de ese Hernando hubo algún godo que seguramente apestaba a caballo.\n\nGuerra es la palabra de esta parada. Y prepárate, porque lo que viene sí me transformó porque duró ochocientos años.",
       "voz": "lengua",
       "audio": "audios/t04.mp3",
-      "ambiente": "viento",
+      "ambiente": "marcha",
       "metros": 41.3,
       "objeto": {
         "nombre": "guerra",
         "texto": "Entró en mí hacia el año 409"
       },
+      "cambios": [
+        {
+          "en": 14.0,
+          "ambiente": "viento"
+        }
+      ],
       "imagen": "imagenes/t04.jpg",
       "imagenPie": "Corona votiva del rey godo Recesvinto, siglo VII. Foto: Emilio J. Rodríguez Posada, CC BY-SA 2.0, Wikimedia Commons"
     },
@@ -206,13 +217,17 @@
       "texto": "Vas a necesitar las dos manos. Mientras caminas, cuenta con los dedos cada cosa de tu casa que yo te diga que es árabe. Cuando se te acaben los dedos, deja de contar y sigue oyendo.\n\nEs el año 711. Un ejército cruza el Mediterráneo desde África, derrota al último rey godo, y en pocos años casi toda la península habla, en la calle y en el palacio, otra lengua: el árabe. Los musulmanes se quedaron en España ocho siglos. Para que te hagas una idea: desde que empezaste a caminar hasta aquí han pasado novecientos años; ellos estuvieron casi lo mismo.\n\nTodo ese tiempo yo fui la lengua de los de abajo, de los campesinos del norte, en pueblos chicos. El árabe era la lengua de la ciencia, del comercio y de la ciudad. Córdoba, en el siglo diez, era la ciudad más grande de Europa occidental, con faroles en las calles de noche.\n\nCuando una lengua manda durante ocho siglos, deja huella aunque no quiera. De ahí me quedaron unas cuatro mil palabras. Ahora los dedos. Alberca. Almohada. Albañil. Alcancía. Tarea. Taza. Jarra. Azotea. Ya se te acabó una mano. Naranja, limón, sandía, zanahoria, aceite, azúcar, alfalfa, arroz. Y la otra. Y faltan álgebra, algoritmo, cifra y cero, las cuales vienen del árabe sifr, vacío. Y hay una que dices cuando quieres algo con muchas ganas: ojalá. Es «law sha Allah», si Dios quisiera. Cada vez que dices ojalá rezas en árabe.\n\nUna más, que no es de esa época pero es de la misma gente: el taco al pastor. Lo trajeron inmigrantes libaneses a Puebla hacia 1930, con el nombre de shawarma, carne girando en un trompo; aquí le cambiaron el cordero por cerdo, le pusieron piña, y salió el taco más mexicano que existe, que de origen es árabe.\n\nY un detalle que me enternece: las muchachas de Al-Ándalus que hablaban mi lengua romance cantaban canciones de amor de cuatro líneas, y los poetas árabes, que las oían en la calle, las metían al final de sus poemas escritas con letras árabes. Se llaman jarchas, y son la primera poesía que existe en español. Esos versos no los escribió un monje ni un rey, sino que los cantaron muchachas enamoradas, como quien mete un verso de reguetón en su trabajo de etimologías.\n\nLa palabra que te dejo es ojalá. Dila en voz alta, y piensa a quién le estás pidiendo el favor en realidad.",
       "voz": "lengua",
       "audio": "audios/t05.mp3",
-      "ambiente": "zoco",
+      "ambiente": "adhan",
       "metros": 211.4,
       "objeto": {
         "nombre": "ojalá",
         "texto": "Entró en mí hacia el año 711"
       },
       "cambios": [
+        {
+          "en": 18.0,
+          "ambiente": "zoco"
+        },
         {
           "en": 122.9,
           "ambiente": "canto"
@@ -275,7 +290,7 @@
       "cambios": [
         {
           "en": 57.7,
-          "ambiente": "barco"
+          "ambiente": "puerto-colon"
         }
       ],
       "imagen": "imagenes/t08.jpg",
@@ -288,13 +303,17 @@
       "texto": "Ahora sí estoy de este lado del mar, y lo primero que me pasa es que no entiendo nada, igual que Lucio en la playa. Lo que me salvó fue una muchacha de tu edad.\n\nEl año es 1519. En la costa de Tabasco, después de una batalla, un cacique le entrega a Cortés veinte mujeres como regalo. Una tiene menos de veinte años, nació cerca de Coatzacoalcos y la vendieron de niña a unos comerciantes mayas; por eso habla náhuatl, que era su lengua, y maya, que aprendió de esclava. La bautizan Marina. Cortés trae además a un náufrago, Jerónimo de Aguilar, que vivió ocho años entre los mayas. Y arma una cadena: Cortés le habla en castellano a Aguilar, Aguilar le traduce al maya a Marina, Marina le traduce al náhuatl a los enviados de Moctezuma, y de regreso. Un imperio entero se negoció pasando por tres lenguas y dos cerebros, y ninguno de los dos era el de Cortés.\n\nLos nahuas le decían Malintzin, porque el náhuatl no tiene erre y el tzin del final es una terminación de respeto, como doña. Por bocas como la suya entraron en mí palabras que hoy el mundo entero cree que son mías: chocolate, tomate, aguacate, chile, chicle, coyote, tianguis, cuate, escuincle. El náhuatl terminaba muchas palabras en tl, un sonido que yo no sé hacer al final, así que lo convertí en te: tomatl, tomate. Es mi manera de masticar lo que no puedo tragar entero.\n\nPero lo que de verdad te podría interesar de esta época pasó aquí, en tu sierra. En 1570, el rey Felipe II firmó que el náhuatl sería la lengua general de los indios de la Nueva España. Pasó porque los frailes, que tenían que convertir a millones de personas que hablaban cientos de lenguas, hicieron una cuenta sencilla: en vez de aprender cien idiomas, aprendemos uno, el que ya usaban los aztecas para cobrar el tributo, y con ese les predicamos a todos.\n\nAhora mira la Sierra Gorda, donde estás. Aquí no se hablaba náhuatl; se hablaban xi'iui y teenek. Y sin embargo algunos pueblos se llaman Jalpan o Ahuacatlán. Una lengua que nunca fue la de aquí le puso nombre a casi todo. Sin embargo, Concá sí es pame.\n\nChocolate es la palabra de esta parada. Y ni siquiera sabemos bien qué quería decir: la explicación de «agua amarga» de los libros es dudosa.",
       "voz": "lengua",
       "audio": "audios/t09.mp3",
-      "ambiente": "mercado",
+      "ambiente": "caracol",
       "metros": 18.9,
       "objeto": {
         "nombre": "chocolate",
         "texto": "Entró en mí hacia el año 1519"
       },
       "cambios": [
+        {
+          "en": 16.0,
+          "ambiente": "mercado"
+        },
         {
           "en": 105.5,
           "ambiente": "cigarras"
@@ -367,7 +386,7 @@
       "cambios": [
         {
           "en": 60.5,
-          "ambiente": "publico"
+          "ambiente": "proyector"
         }
       ],
       "imagen": "imagenes/t12.jpg",
@@ -804,27 +823,32 @@
     ]
   },
   "archivos": [
+    "./audios/ambiente-adhan.mp3",
     "./audios/ambiente-barco.mp3",
     "./audios/ambiente-campanas.mp3",
     "./audios/ambiente-canto.mp3",
+    "./audios/ambiente-caracol.mp3",
     "./audios/ambiente-chimenea.mp3",
     "./audios/ambiente-cigarras.mp3",
     "./audios/ambiente-corral.mp3",
     "./audios/ambiente-escritorio.mp3",
+    "./audios/ambiente-escuela.mp3",
     "./audios/ambiente-foro.mp3",
-    "./audios/ambiente-gabinete.mp3",
     "./audios/ambiente-godos.mp3",
     "./audios/ambiente-imprenta.mp3",
     "./audios/ambiente-mar.mp3",
+    "./audios/ambiente-marcha.mp3",
+    "./audios/ambiente-mercado.mp3",
     "./audios/ambiente-monasterio.mp3",
     "./audios/ambiente-pantalla.mp3",
     "./audios/ambiente-plaza.mp3",
+    "./audios/ambiente-proyector.mp3",
     "./audios/ambiente-publico.mp3",
-    "./audios/ambiente-pueblo-quieto.mp3",
     "./audios/ambiente-pueblo.mp3",
+    "./audios/ambiente-puerto-colon.mp3",
     "./audios/ambiente-radio.mp3",
+    "./audios/ambiente-sala.mp3",
     "./audios/ambiente-tianguis.mp3",
-    "./audios/ambiente-tlatelolco.mp3",
     "./audios/ambiente-zoco.mp3",
     "./audios/campana.mp3",
     "./audios/t01.mp3",
