@@ -140,7 +140,7 @@
   "ambienteNivel": {
     "bajo": 0.14,
     "alto": 0.5,
-    "antesala": 4
+    "antesala": 3
   },
   "instrucciones": [
     "Cada paso que das es un año. Diez pasos, una década; cien pasos, un siglo. Arriba verás el año en que vas.",
@@ -209,11 +209,11 @@
       },
       "cambios": [
         {
-          "en": 6.0,
+          "en": 9.0,
           "ambiente": "viento"
         }
       ],
-      "antesala": 8,
+      "antesala": 5,
       "imagen": "imagenes/t04.jpg",
       "imagenPie": "Corona votiva del rey godo Recesvinto, siglo VII. Foto: Emilio J. Rodríguez Posada, CC BY-SA 2.0, Wikimedia Commons"
     },
@@ -240,7 +240,7 @@
           "ambiente": "canto"
         }
       ],
-      "antesala": 10,
+      "antesala": 8,
       "imagen": "imagenes/t05.jpg",
       "imagenPie": "Arcos de la Mezquita de Córdoba. Foto: Alvaro.vinuela.carnicero, CC BY-SA 4.0, Wikimedia Commons"
     },
@@ -320,7 +320,7 @@
       },
       "cambios": [
         {
-          "en": 8.0,
+          "en": 11.0,
           "ambiente": "mercado"
         },
         {
@@ -328,7 +328,7 @@
           "ambiente": "cigarras"
         }
       ],
-      "antesala": 8,
+      "antesala": 5,
       "imagen": "imagenes/t09.jpg",
       "imagenPie": "Malintzin interpreta entre Cortés y los señores tlaxcaltecas. Lienzo de Tlaxcala, c. 1585. Dominio público"
     },
