@@ -109,6 +109,7 @@
     "mercado": "audios/ambiente-tlatelolco.mp3",
     "corral": "audios/ambiente-corral.mp3",
     "sala": "audios/ambiente-gabinete.mp3",
+    "chimenea": "audios/ambiente-chimenea.mp3",
     "radio": "audios/ambiente-radio.mp3",
     "escuela": "audios/ambiente-pueblo-quieto.mp3",
     "cocina": "audios/ambiente-tianguis.mp3",
@@ -252,7 +253,7 @@
       "cambios": [
         {
           "en": 48.7,
-          "ambiente": "gabinete"
+          "ambiente": "chimenea"
         }
       ],
       "imagen": "imagenes/t07.jpg",
@@ -806,6 +807,7 @@
     "./audios/ambiente-barco.mp3",
     "./audios/ambiente-campanas.mp3",
     "./audios/ambiente-canto.mp3",
+    "./audios/ambiente-chimenea.mp3",
     "./audios/ambiente-cigarras.mp3",
     "./audios/ambiente-corral.mp3",
     "./audios/ambiente-escritorio.mp3",

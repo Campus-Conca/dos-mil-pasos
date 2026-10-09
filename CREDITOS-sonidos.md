@@ -48,3 +48,13 @@ Sin usar: 192612 chain_rustle (sgossner, CC BY 4.0, dura un segundo); 168717 woo
 | ambiente-campanas (t11, 1821) | repique | 207439 (sinewave1kHz) | CC0 |
 | ambiente-canto (t05, la jarcha) | canto de boda de Tánger, bajo | 140143 (xserra) | **CC BY 4.0** |
 | ambiente-publico (t12, el cine) | murmullo de sala | 333415 (jayfrosting) | CC0 |
+
+## Cuarta pasada (8 de octubre de 2026): voces «latinas» y otra chimenea
+
+| Clip | Capas | Fuentes | Licencias |
+|---|---|---|---|
+| ambiente-mar (t01) | olas + madera (mezcla anterior) + discusión en italiano lejana, filtrada tras las olas (33–73 s) | 803679 · 168717 · 182860 political_discussion.it (manicciola) | CC0 · CC0 · **CC BY 4.0** |
+| ambiente-foro (t02) | pasos de la rambla (240–288 s) + plaza con niños lejos (181454, 0–36 s, filtrada) + discusión en italiano cerca (182860, 54–89 s) | 351782 (tim.kahn) · 181454 kids singing in Bologna square (rhonturn) · 182860 (manicciola) | **CC BY-NC 4.0** · **CC BY 4.0** · **CC BY 4.0** |
+| ambiente-chimenea (t07, cambio a 1252) | fuego de chimenea (10–56 s) + páginas | 18766 chimney-fire (reinsamba) · 164806 (exterminat) | **CC BY 4.0** · CC0 |
+
+El italiano hace de latín hablado en el mundo de Lucio: lejos en la playa de t01, de cerca en el foro de t02. El murmullo 333415 ya no se usa en t02 (sigue en corral y público). Receta en `lib.py` del scratchpad `audio3`.
