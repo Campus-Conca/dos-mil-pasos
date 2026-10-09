@@ -137,6 +137,10 @@
     "velocidad": 0.8,
     "maximoMetros": 400
   },
+  "ambienteNivel": {
+    "bajo": 0.25,
+    "alto": 0.6
+  },
   "instrucciones": [
     "Cada paso que das es un año. Diez pasos, una década; cien pasos, un siglo. Arriba verás el año en que vas.",
     "Guarda el teléfono en la bolsa y camina despacio. Las historias llegan solas cuando cruzas cada época.",

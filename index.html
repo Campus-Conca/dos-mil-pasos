@@ -1194,12 +1194,14 @@ function narrarTTS(t){
   u.onend = terminoNarracion;
   speechSynthesis.speak(u);
 }
+/* Nivel del ambiente grabado: bajo la voz y entre paradas. Config: "ambienteNivel": {"bajo": 0.25, "alto": 0.6}. */
+function nivAmb(){ const c = (R && R.ambienteNivel) || {}; return { bajo: (c.bajo ?? 0.12), alto: (c.alto ?? 0.5) }; }
 function bajarAmbiente(){ if(ambNodo) ambNodo.gain.gain.setTargetAtTime(0.05, ctx.currentTime, 0.4);
-  if(ambElemento) ambElemento.volume = 0.12;
+  if(ambElemento) ambElemento.volume = nivAmb().bajo;
   if(fondoNodos) fondoNodos.master.gain.setTargetAtTime(fondoBase*fondoDuck, ctx.currentTime, 0.5);
   if(fondoElemento) fondoElemento.volume = Math.min(1, fondoBase*fondoDuck); }
 function subirAmbiente(){ if(ambNodo) ambNodo.gain.gain.setTargetAtTime(0.18, ctx.currentTime, 1.2);
-  if(ambElemento) ambElemento.volume = 0.5;
+  if(ambElemento) ambElemento.volume = nivAmb().alto;
   if(fondoNodos) fondoNodos.master.gain.setTargetAtTime(fondoBase, ctx.currentTime, 1.6);
   if(fondoElemento) fondoElemento.volume = Math.min(1, fondoBase); }
 
@@ -1282,7 +1284,7 @@ function ambientar(nombre){
   else {
     if(!ambElemento){ ambElemento = new Audio(); ambElemento.loop = true; }
     ambElemento.loop = true;
-    ambElemento.volume = narracionActiva() ? 0.12 : 0.5;
+    ambElemento.volume = narracionActiva() ? nivAmb().bajo : nivAmb().alto;
     ambElemento.src = def;
     ambElemento.play().catch(()=> ambienteSintetizado("rio"));
   }
